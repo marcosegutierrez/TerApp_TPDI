@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-8 pt-2 offset-md-2 ">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="card card-body ">
+        <form action="/patient/add_patient" method="POST" class="">
+
+            <h1 class="text-center">LISTADO DE PACIENTES</h1>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" class="form-control">
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" class="form-control">
+            <label for="edad">Edad:</label>
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" class="form-control" onKeyPress="if(this.value.length==2) return false;">
+            <label for="tutor">Tutor:</label>
+            <input type="text" name="tutor" placeholder="Nombre completo" class="form-control">
+            <label for="obra_social">Obra Social:</label>
+            <input type="text" name="obra_social" class="form-control">
+            <label for="n_afiliado">Número de afiliado</label>
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" class="form-control" onKeyPress="if(this.value.length==16) return false;">
+            <label for="dni">DNI</label>
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos o comas" class="form-control" onKeyPress="if(this.value.length==8) return false;">
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="form-control">
+            <label for="telefono">Télefono principal:</label>
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir característica" class="form-control" onKeyPress="if(this.value.length==15) return false;">
+            <label for="domicilio">Domicilio/Barrio/Localidad:</label>
+            <input type="text" name="domicilio" class="form-control">
+            <label for="diagnostico">Diagnóstico:</label>
+            <input type="text" name="diagnostico" class="form-control">
+            <label for="fecha_de_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" name="fecha_de_nacimiento" placeholder="Fecha de Nacimiento" class="form-control">
+            <label for="fecha_de_ingreso">Fecha de Ingreso:</label>
+            <input type="date" name="fecha_de_ingreso" placeholder="Fecha de Ingreso" class="form-control">
+            <input type="text" name="observaciones" placeholder="Observaciones" class="form-control">
+
+            <div class="offset-md-4">
+                <button type="submit" class="btn btn-primary btn-bg mx-4 my-4">
+                    Guardar
+                </button>
+
+                <a href="/personalized_welcome">
+                    <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4  ">
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <br>
+</div>
+
+
+<div class="card card-body  ">
+    <h3 class="text-center">Listado de Pacientes</h3>
+    <div class="form-group form-control text table-responsive container-fluid">
+        <table class="table ">
+            <thead>
+                <tr>
+
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Edad</td>
+                    <td>Tutor</td>
+                    <td>Obra_Social</td>
+                    <td>N_Afiliado</td>
+                    <td>Dni</td>
+                    <td>Email</td>
+                    <td>Telefono</td>
+                    <td>Domicilio</td>
+                    <td>Diagnostico</td>
+                    <td>Fecha_De_Nacimiento</td>
+                    <td>Fecha_De_Ingreso</td>
+                    <td>Observaciones</td>
+                    <td colspan="2" class="text-center">Operaciones</td>
+
+                </tr>
+            </thead>
+            <tbody class="pbody">
+                {% for paciente in paciente %}
+                <tr>
+                    <td>{{ paciente.1 }}</td>
+                    <td>{{ paciente.2 }}</td>
+                    <td>{{ paciente.3 }}</td>
+                    <td>{{ paciente.4 }}</td>
+                    <td>{{ paciente.5 }}</td>
+                    <td>{{ paciente.6 }}</td>
+                    <td>{{ paciente.7 }}</td>
+                    <td>{{ paciente.8 }}</td>
+                    <td>{{ paciente.9 }}</td>
+                    <td>{{ paciente.10 }}</td>
+                    <td>{{ paciente.11 }}</td>
+                    <td>{{ paciente.12 }}</td>
+                    <td>{{ paciente.13 }}</td>
+                    <td>{{ paciente.14 }}</td>
+
+                    <td>
+                        <div class="">
+                            <a href="/patient/edit_patient/{{paciente.0}}">
+                                <input type="button" class="btn btn-success btn-sm mx-4 " value="Editar">
+                            </a>
+                    </td>
+                    <td>
+                        <a href="/patient/delete_patient/{{paciente.0}}">
+                            <input type="button" class="btn btn-danger btn-sm mx-4 btn-delete" value="Eliminar">
+                        </a>
+    </div>
+    </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+body{
+    background-image: url(../img/fond.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar{
+    font-family: 'Russo One', sans-serif;
+    
+}
+
+.navbar a {
+    font-size: 20px;
+    text-align: justify;
+  }
+
+h3, h2 ,h1{
+    font-family: 'Russo One', sans-serif;
+}
+
+.btn-toolbar{
+    
+    
+    border: 31px solid transparent;
+}
+
+.table {
+    
+    font-family: 'Russo One', sans-serif;
+}
+
+.pbody{
+    color:black;
+}
+
+.btn{
+    font-family: 'Russo One', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}

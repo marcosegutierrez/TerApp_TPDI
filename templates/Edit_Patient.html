@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-5 pt-4 offset-md-4">
+    <div class="card card-body ">
+        <form action="/update/{{patient.0}}" method="POST">
+
+            <input type="text" name="nombre" placeholder="Nombre" value="{{ patient.1}}" class="form-control">
+            <input type="text" name="apellido" placeholder="Apellido" value="{{ patient.2}}" class="form-control">
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" placeholder="Edad" value="{{ patient.3}}" class="form-control" onKeyPress="if(this.value.length==2) return false;">
+            <input type="text" name="tutor" placeholder="Tutor" value="{{ patient.4}}" class="form-control">
+            <input type="text" name="obra_social" placeholder="Obra_Social" value="{{ patient.5}}" class="form-control">
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" placeholder="N_Afiliado" value="{{ patient.6}}" class="form-control" onKeyPress="if(this.value.length==16) return false;">
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Dni" value="{{ patient.7}}" class="form-control"  onKeyPress="if(this.value.length==8) return false;">
+            <input type="text" name="email" placeholder="Email" value="{{ patient.8}}" class="form-control">
+            <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Telefono" value="{{ patient.9}}" class="form-control" onKeyPress="if(this.value.length==15) return false;">
+            <input type="text" name="domicilio" placeholder="Domicilio" value="{{ patient.10}}" class="form-control">
+            <input type="text" name="diagnostico" placeholder="Diagnostico" value="{{ patient.11}}" class="form-control">
+            <label for="fecha_de_nacimiento">Fecha de Nacimiento:</label>
+            <input type="text" name="fecha_de_nacimiento" placeholder="Fecha_De_Nacimiento" value="{{ patient.12}}" class="form-control">
+            <label for="fecha_de_ingreso">Fecha de Ingreso:</label>
+            <input type="text" name="fecha_de_ingreso" placeholder="Fecha_De_Ingreso" value="{{ patient.13}}" class="form-control">
+            <input type="text" name="observaciones" placeholder="Observaciones" value="{{ patient.14}}" class="form-control">
+
+            <div class="offset-md-3">
+                <button type="submit" class="btn btn-primary btn-bg mx-4  my-4">
+                   Guardar
+                </button>
+
+                <a href="/patient">
+                    <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 ">
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

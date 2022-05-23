@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="col-md-5 pt-4 offset-md-4 ">
+        <div class="card card-body ">
+            <form action="/professional/add_professional" method="POST">
+                
+                <h1 class="text-center">MI PERFIL PROFESIONAL</h1>
+                
+                <input type="text" name="nombre" placeholder="Nombre" class="my-4 form-control ">
+                <input type="text" name="apellido" placeholder="Apellido" class="my-4 form-control ">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Dni" class="form-control " onKeyPress="if(this.value.length==8) return false;">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Telefono" class="my-4 form-control " onKeyPress="if(this.value.length==15) return false;">
+                <input type="text" name="direccion" placeholder="Direccion" class="my-4 form-control ">
+                <input type="text" name="email" placeholder="Email" class="my-4 form-control ">
+                <input type="text" name="titulo" placeholder="Titulo" class="my-4 form-control ">
+                <input type="text" name="es_prestador" placeholder="Prestador" class="my-4 form-control ">
+                <input type="text" name="obra_social" placeholder="Obra Social" class="my-4 form-control ">
+                <input type="text" name="institucion_educativa" placeholder="Institución Educativa" class="my-4 form-control ">
+                <input type="text" name="esta_matriculado" placeholder="Esta Matriculado" class="my-4 form-control ">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" name="matricula" placeholder="Matricula" class="my-4 form-control " onKeyPress="if(this.value.length==10) return false;">
+                <input type="password" name="contraseña" placeholder="Contraseña" class="my-4 form-control ">
+                <input type="password" name="repetir_contraseña" placeholder="Repetir Contraseña" class="my-4 form-control ">
+                
+                <div class="btn-toolbar offset-md-1 ">
+                    <button type="submit" class="btn btn-primary btn-bg mx-3 col-md-6 ">
+                        Guardar
+                    </button>
+                                        
+                    <a href="/beginning">
+                        <input type="button" value="Volver" class="btn btn-primary btn-bg md-6 ">
+                    </a>
+                 </div>
+                <h6 class="text-center">TerApp© Todos los derechos reservados.</h6>
+            </div>       
+        </form>
+    </div>
+</div>
+{% endblock %}
