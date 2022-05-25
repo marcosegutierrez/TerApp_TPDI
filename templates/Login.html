@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<html>
+    <div class="col-md-5 pt-4 offset-md-4">
+        <div class="card card-body ">
+            <h1 class="text-center">Login</h1>
+
+            <input type="text" name="Email" placeholder="Email" class="my-1 form-control ">
+            <input type="text" pattern="/^-?\d+\.?\d*$/" name="Contraseña" placeholder="Contraseña" class=" form-control "  onKeyPress="if(this.value.length==16) return false;">
+           
+            <div class="btn-toolbar offset-md-2">
+                <a href="/personalized_welcome">
+                    <input type="button" value="INGRESAR" class="btn btn-primary btn-sm mx-4">
+                </a>
+
+
+                <a href="/beginning">
+                    <input type="button" value="VOLVER" class="btn btn-primary btn-sm">
+                </a>
+              </div>  
+        </div>
+    </div>
+</html>
+
+{% endblock %}
