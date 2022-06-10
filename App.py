@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Mysql Connection
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'terapp'
 mysql = MySQL(app)
 
@@ -156,6 +156,31 @@ def delete_patient(id):
 @app.route('/personalized_welcome')
 def Personalized_Welcomed():
     return render_template('Personalized_Welcome.html')
+
+events = [
+    {
+        'todo' : 'Xiaomi',
+        'date' : '2022-06-07',
+    },
+    {
+        'todo' : 'Nora',
+        'date' : '2022-06-07',
+    },
+    {
+        'todo' : 'Marcos',
+        'date' : '2022-06-07',
+    },
+    {
+        'todo' : 'Gonzalo',
+        'date' : '2022-06-09',
+    },
+
+]
+
+@app.route('/calendar')
+def calendar():
+   return render_template('calendar.html',
+   events = events)
 
 # ------------------------INICIO------------------------------
 
