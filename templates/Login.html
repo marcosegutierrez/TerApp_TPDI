@@ -4,22 +4,34 @@
 
 <html>
     <div class="col-md-5 pt-4 offset-md-4">
-        <div class="card card-body ">
-            <h1 class="text-center">Login</h1>
 
-            <input type="text" name="Email" placeholder="Email" class="my-1 form-control ">
-            <input type="text" pattern="/^-?\d+\.?\d*$/" name="Contraseña" placeholder="Contraseña" class=" form-control "  onKeyPress="if(this.value.length==16) return false;">
-           
-            <div class="btn-toolbar offset-md-2">
-                <a href="/personalized_welcome">
-                    <input type="button" value="INGRESAR" class="btn btn-primary btn-sm mx-4">
-                </a>
+        <form action="/login" method="POST">
 
+            <div class="login card card-body">
+              <div class="login-screen">
+                <div class="app-title">
+                    <h1>Login</h1>
+                </div>
 
-                <a href="/beginning">
-                    <input type="button" value="SALIR" class="btn btn-primary btn-sm">
-                </a>
-              </div>  
+              <div class="login-form">
+                <div class="control-group">
+
+                    <input type="text" class="login-field form-control" value="" placeholder="Email" name="email">
+
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+                <div class="control-group">
+
+                    <input type="password" class="login-field form-control" value="" placeholder="Password" name="password">
+                    
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+                 <input type="submit" value="INGRESAR" class="btn btn-primary btn-large btn-block">
+               </div>
+              </div>
+             </div>
+
+            </form>
         </div>
     </div>
 </html>

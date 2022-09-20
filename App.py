@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask.globals import request
 from flask_mysqldb import MySQL
 
@@ -13,7 +13,6 @@ mysql = MySQL(app)
 
 # settings
 app.secret_key = 'mysecretkey'
-
 
 # ------------------------------PROFESIONAL--------------------------------------
 @app.route('/professional')
@@ -199,7 +198,39 @@ def New_Patient():
 
 @app.route('/login')
 def Login():
-    return render_template('Login.html')
+    if session.get('logueado'):
+       return render_template('Personalized_Welcome.html')
+    else:
+         return render_template('Login.html')
+        
+
+    # ------------------------------LOGIN Verificación de datos--------------------------------------
+
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+  login = request.form
+  
+  email = login['email']
+  password = login['password']
+
+  cur = mysql.connection.cursor()
+  cur.execute('SELECT * FROM profesional WHERE email = %s', [email])
+  profesional = cur.fetchone()
+  
+  if profesional is None:
+      return Login();
+
+  password_db = profesional[13] #indice de la contraseña
+  
+  session['logueado'] = (password == password_db)
+  
+  return Login()
+
+@app.route('/logout')
+def logout():
+  session['logueado'] = False
+  return Login()
 
 # ------------------------DEBUG---------------------------------
 
