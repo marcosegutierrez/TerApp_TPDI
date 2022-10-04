@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
 <div class="col-md-8 pt-2 offset-md-2 ">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -17,7 +18,7 @@
     <div class="card card-body ">
         <form action="/patient/add_patient" method="POST" class="">
 
-            <h1 class="text-center">LISTADO DE PACIENTES</h1>
+            <h1 class="text-center">Planilla de registro</h1>
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" class="form-control">
             <label for="apellido">Apellido:</label>
@@ -52,7 +53,7 @@
                 </button>
 
                 <a href="/personalized_welcome">
-                    <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4  ">
+                    <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 my-4">
                 </a>
             </div>
         </form>
@@ -65,11 +66,27 @@
 
 <div class="card card-body  ">
     <h3 class="text-center">Listado de Pacientes</h3>
+<!-- BUSCADOR -->
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/patient" method="POST">
+            <input type="search" id="input-search" name="input-search" placeholder="Buscar aqui" class="form-group" />
+            <button type="submit" class="btn btn-primary btn-bg mx-4 my-4">Buscar</button>
+            <label class="form-group" id="search-label">Filtro actual: {{ currentvalue }}</label>
+        </form>
+    </div>
+    <div class="col-md-6">
+        
+    </div>
+</div>
+
+<!-- FIN BUSCADOR -->
+
     <div class="form-group form-control text table-responsive container-fluid">
         <table class="table ">
             <thead>
                 <tr>
-
                     <td>Nombre</td>
                     <td>Apellido</td>
                     <td>Edad</td>
@@ -116,14 +133,15 @@
                         <a href="/patient/delete_patient/{{paciente.0}}">
                             <input type="button" class="btn btn-danger btn-sm mx-4 btn-delete" value="Eliminar">
                         </a>
-    </div>
-    </td>
+                        </div>
+                    </td>
 
-    </tr>
+                </tr>
     {% endfor %}
 
-    </tbody>
-    </table>
+                </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

@@ -151,6 +151,7 @@ def delete_patient(id):
     return redirect(url_for('Patient_List'))
 
 
+
 # ----------------------BIENVENIDA PERSONALIZADA--------------
 @app.route('/personalized_welcome')
 def Personalized_Welcomed():
@@ -231,6 +232,39 @@ def do_admin_login():
 def logout():
   session['logueado'] = False
   return Login()
+
+  # ------------------------BUSCADOR------------------------------
+
+@app.route('/patient', methods=['POST'])
+def Patient_List_Filtered():
+    busqueda = request.form['input-search']
+
+    if busqueda == "":
+        return Patient_List()
+
+    currentvalue = busqueda
+
+    query = "SELECT * FROM paciente WHERE "
+    query += "nombre LIKE '%" + busqueda + "%' OR "
+    query += "apellido LIKE '%" + busqueda + "%' OR "
+    query += "edad LIKE '%" + busqueda + "%' OR "
+    query += "tutor LIKE '%" + busqueda + "%' OR "
+    query += "obra_social LIKE '%" + busqueda + "%' OR "
+    query += "n_afiliado LIKE '%" + busqueda + "%' OR "
+    query += "dni LIKE '%" + busqueda + "%' OR "
+    query += "email LIKE '%" + busqueda + "%' OR "  
+    query += "telefono LIKE '%" + busqueda + "%' OR "
+    query += "domicilio LIKE '%" + busqueda + "%' OR "
+    query += "diagnostico LIKE '%" + busqueda + "%' OR "
+    query += "observaciones LIKE '%" + busqueda + "%'"
+
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    
+    return render_template('Patient_List.html', paciente=data, currentvalue = currentvalue)
+
+
 
 # ------------------------DEBUG---------------------------------
 
