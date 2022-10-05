@@ -16,22 +16,22 @@ body{
 
 h3, h2 ,h1{
     font-family: 'Russo One', sans-serif;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .btn-toolbar{
-    
-    
     border: 31px solid transparent;
 }
 
+
 .table {
-    
-    font-family: 'Russo One', sans-serif;
+    font-size: small;
+    font-family: 'Russo One';
 }
 
 .pbody{
     color:black;
+    
 }
 
 .btn{
@@ -46,6 +46,35 @@ margin-right: 30px;
 margin-bottom: 20px !important;
 }
 
+.card-body{
+font-size: small;
+}
+
+#tarjeta_paciente{
+    height: 1000px;
+}
+
+.form-control{
+    margin-top: 2px;
+}
+
+::placeholder {
+    font-size: smaller;
+    font-style: italic;
+}
+
+#boton_volver{
+    text-align: right;
+}
+
 a{
     text-decoration: none;
 }
+
+#input-search{
+    border-radius: 3px;
+    min-width: 200px;
+    min-height:35px;
+    padding-left: 10px;
+    margin-right: 20px;
+  }
