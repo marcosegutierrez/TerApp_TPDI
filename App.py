@@ -89,7 +89,7 @@ def add_patient():
         cur.execute('INSERT INTO paciente (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones))
         mysql.connection.commit()
-        flash('Contacto agregado satisfactoriamente')
+        flash('Paciente agregado satisfactoriamente')
         return redirect(url_for('Patient_List'))
 
 
@@ -139,6 +139,7 @@ def update_patient(id):
             WHERE id = %s  
             """, (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones, id))
         mysql.connection.commit()
+        flash('Paciente editado satisfactoriamente')
         return redirect(url_for('Patient_List'))
 
 
@@ -202,7 +203,9 @@ def Login():
     if session.get('logueado'):
        return render_template('Personalized_Welcome.html')
     else:
-         return render_template('Login.html')
+        
+        return render_template('Login.html')
+        
         
 
     # ------------------------------LOGIN Verificación de datos--------------------------------------
@@ -220,7 +223,8 @@ def do_admin_login():
   profesional = cur.fetchone()
   
   if profesional is None:
-      return Login();
+        flash("Ups! vuelve a intentarlo")
+        return Login();
 
   password_db = profesional[13] #indice de la contraseña
   

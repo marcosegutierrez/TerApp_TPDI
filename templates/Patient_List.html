@@ -9,7 +9,6 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ message }}
         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-
         </button>
     </div>
     {% endfor %}
@@ -40,7 +39,7 @@
                     <input type="text" name="email" class="form-control">
                     <label for="telefono">Télefono principal:</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir característica" class="form-control" onKeyPress="if(this.value.length==15) return false;">
-                    <label for="domicilio">Domicilio/Barrio/Localidad:</label>
+                    <label for="domicilio">Domicilio / Barrio / Localidad:</label>
                     <input type="text" name="domicilio" class="form-control">
                     <label for="diagnostico">Diagnóstico:</label>
                     <input type="text" name="diagnostico" class="form-control">
@@ -141,7 +140,7 @@
 <br>
 <div id="boton_volver">
     <a href="/personalized_welcome">
-        <input type="button" value="Volver" class="btn btn-success btn-bg mx-2 col-md-2">
+        <input type="button" value="Volver" class="btn btn-success btn-bg mx-4 col-md-2">
     </a>
 </div>
 {% endblock %}
