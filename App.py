@@ -206,8 +206,6 @@ def Login():
         
         return render_template('Login.html')
         
-        
-
     # ------------------------------LOGIN Verificación de datos--------------------------------------
 
 
@@ -267,7 +265,6 @@ def Patient_List_Filtered():
     data = cur.fetchall()
     
     return render_template('Patient_List.html', paciente=data, currentvalue = currentvalue)
-
 
 
 # ------------------------DEBUG---------------------------------
