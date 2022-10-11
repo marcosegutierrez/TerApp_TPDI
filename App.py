@@ -89,7 +89,7 @@ def add_patient():
         cur.execute('INSERT INTO paciente (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones))
         mysql.connection.commit()
-        flash('Contacto agregado satisfactoriamente')
+        flash('Paciente agregado satisfactoriamente')
         return redirect(url_for('Patient_List'))
 
 
@@ -139,6 +139,7 @@ def update_patient(id):
             WHERE id = %s  
             """, (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones, id))
         mysql.connection.commit()
+        flash('Paciente editado satisfactoriamente')
         return redirect(url_for('Patient_List'))
 
 
@@ -149,6 +150,7 @@ def delete_patient(id):
     mysql.connection.commit()
     flash('Paciente removido satisfactoriamente')
     return redirect(url_for('Patient_List'))
+
 
 
 # ----------------------BIENVENIDA PERSONALIZADA--------------
@@ -201,7 +203,9 @@ def Login():
     if session.get('logueado'):
        return render_template('Personalized_Welcome.html')
     else:
-         return render_template('Login.html')
+        
+        return render_template('Login.html')
+        
         
 
     # ------------------------------LOGIN Verificación de datos--------------------------------------
@@ -219,7 +223,8 @@ def do_admin_login():
   profesional = cur.fetchone()
   
   if profesional is None:
-      return Login();
+        flash("Ups! vuelve a intentarlo")
+        return Login();
 
   password_db = profesional[13] #indice de la contraseña
   
@@ -231,6 +236,39 @@ def do_admin_login():
 def logout():
   session['logueado'] = False
   return Login()
+
+  # ------------------------BUSCADOR------------------------------
+
+@app.route('/patient', methods=['POST'])
+def Patient_List_Filtered():
+    busqueda = request.form['input-search']
+
+    if busqueda == "":
+        return Patient_List()
+
+    currentvalue = busqueda
+
+    query = "SELECT * FROM paciente WHERE "
+    query += "nombre LIKE '%" + busqueda + "%' OR "
+    query += "apellido LIKE '%" + busqueda + "%' OR "
+    query += "edad LIKE '%" + busqueda + "%' OR "
+    query += "tutor LIKE '%" + busqueda + "%' OR "
+    query += "obra_social LIKE '%" + busqueda + "%' OR "
+    query += "n_afiliado LIKE '%" + busqueda + "%' OR "
+    query += "dni LIKE '%" + busqueda + "%' OR "
+    query += "email LIKE '%" + busqueda + "%' OR "  
+    query += "telefono LIKE '%" + busqueda + "%' OR "
+    query += "domicilio LIKE '%" + busqueda + "%' OR "
+    query += "diagnostico LIKE '%" + busqueda + "%' OR "
+    query += "observaciones LIKE '%" + busqueda + "%'"
+
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    
+    return render_template('Patient_List.html', paciente=data, currentvalue = currentvalue)
+
+
 
 # ------------------------DEBUG---------------------------------
 

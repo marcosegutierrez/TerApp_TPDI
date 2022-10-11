@@ -8,6 +8,16 @@
             <div class="login card card-body">
               <div class="login-screen">
                 <div class="app-title">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                     <h1>Login</h1>
                 </div>
                 <div class="login-form">
@@ -19,7 +29,7 @@
                         <input type="password" class="login-field form-control" value="" placeholder="Password" name="password">
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
                     </div>
-                    <div class="btn-block offset-md-3">
+                    <div class="btn-block offset-md-4">
                         <input type="submit" value="INGRESAR" class="btn btn-primary btn-large btn-block">
                         <a href="/beginning">
                             <input type="button" value="SALIR" class="btn btn-bg">
