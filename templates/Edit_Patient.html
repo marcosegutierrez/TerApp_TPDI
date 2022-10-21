@@ -18,33 +18,33 @@
         <form action="/update/{{patient.0}}" method="POST">
             <h2 class="text-center">Ficha</h2>
             <br>
-            <label for="tutor">Nombre:</label>
+            <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" value="{{ patient.1}}" class="form-control">
-            <label for="tutor">Apellido:</label>
+            <label for="apellido">Apellido:</label>
             <input type="text" name="apellido" value="{{ patient.2}}" class="form-control">
-            <label for="tutor">Edad:</label>
+            <label for="edad">Edad:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" value="{{ patient.3}}" class="form-control" onKeyPress="if(this.value.length==2) return false;">
             <label for="tutor">Tutor:</label>
             <input type="text" name="tutor" placeholder="Nombre completo" value="{{ patient.4}}" class="form-control">
-            <label for="tutor">Obra Social:</label>
+            <label for="obra_social">Obra Social:</label>
             <input type="text" name="obra_social" value="{{ patient.5}}" class="form-control">
-            <label for="tutor">N° Afiliado:</label>
+            <label for="n_afiliado">N° Afiliado:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" value="{{ patient.6}}" class="form-control" onKeyPress="if(this.value.length==16) return false;">
-            <label for="tutor">DNI::</label>
+            <label for="dni">DNI::</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos" value="{{ patient.7}}" class="form-control"  onKeyPress="if(this.value.length==8) return false;">
-            <label for="tutor">Email:</label>
+            <label for="email">Email:</label>
             <input type="text" name="email" value="{{ patient.8}}" class="form-control">
-            <label for="tutor">Teléfono principal:</label>
+            <label for="telefono">Teléfono principal:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir característica" value="{{ patient.9}}" class="form-control" onKeyPress="if(this.value.length==15) return false;">
-            <label for="tutor">Domicilio / Barrio / Localidad:</label>
+            <label for="domicilio">Domicilio / Barrio / Localidad:</label>
             <input type="text" name="domicilio" value="{{ patient.10}}" class="form-control">
-            <label for="tutor">Diagnóstico:</label>
+            <label for="diagnostico">Diagnóstico:</label>
             <input type="text" name="diagnostico" value="{{ patient.11}}" class="form-control">
             <label for="fecha_de_nacimiento">Fecha de Nacimiento:</label>
             <input type="date" name="fecha_de_nacimiento" placeholder="Fecha de Nacimiento" value="{{ patient.12}}" class="form-control">
             <label for="fecha_de_ingreso">Fecha de Ingreso:</label>
             <input type="date" name="fecha_de_ingreso" placeholder="Fecha de Ingreso" value="{{ patient.13}}" class="form-control">
-            <label for="fecha_de_ingreso">Observaciones:</label>
+            <label for="observaciones">Observaciones:</label>
             <input type="text" name="observaciones" placeholder="Observaciones" value="{{ patient.14}}" class="form-control">
 
             <div class="offset-md-3">

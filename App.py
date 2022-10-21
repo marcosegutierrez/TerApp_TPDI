@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask.globals import request
 from flask_mysqldb import MySQL
@@ -13,6 +14,67 @@ mysql = MySQL(app)
 
 # settings
 app.secret_key = 'mysecretkey'
+
+# global
+global profesional_global
+
+# ------------------------INICIO------------------------------
+
+
+@app.route('/beginning')
+def Beginning():
+    return render_template('Beginning.html')
+
+# -En caso de querer comenzar con localhost:3000 
+@app.route('/')
+def New_Patient():
+    return render_template('Beginning.html')
+
+# ------------------------LOGIN------------------------------
+
+
+@app.route('/login')
+def Login():
+    if session.get('logueado'):
+       return render_template('Personalized_Welcome.html')
+    else:
+        
+        return render_template('Login.html')
+        
+    # ------------------------------LOGIN Verificación de datos--------------------------------------
+
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+  login = request.form
+  
+  email = login['email']
+  password = login['password']
+
+  if email is '' or password is '':
+        flash("Completar campos! vuelve a intentarlo")
+        return Login();
+
+  cur = mysql.connection.cursor()
+  cur.execute('SELECT * FROM profesional WHERE email = %s', [email])
+
+  profesional = cur.fetchone()
+
+  if profesional is None :
+        flash("Ups! vuelve a intentarlo")
+        return Login();
+
+  password_db = profesional[13] #indice de la contraseña
+  
+  session['logueado'] = (password == password_db)
+
+  return Login()
+
+@app.route('/logout')
+def logout():
+  session['logueado'] = False
+  return Login()
+
 
 # ------------------------------PROFESIONAL--------------------------------------
 @app.route('/professional')
@@ -45,14 +107,65 @@ def add_professional():
         cur.execute('INSERT INTO profesional (nombre, apellido, dni, telefono, direccion, email, titulo, es_prestador, obra_social, institucion_educativa, esta_matriculado, matricula, contraseña, repetir_contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (nombre, apellido, dni, telefono, direccion, email, titulo, es_prestador, obra_social, institucion_educativa, esta_matriculado, matricula, contraseña, repetir_contraseña))
         mysql.connection.commit()
-        return redirect(url_for('Personalized_Welcomed'))
+        flash('Registro exitoso! Ingresa con tus credenciales')
+        return redirect(url_for('Login'))
+        
+
+     #---Editar perfil profesional--
+@app.route('/edit_professional')
+def get_profesional():
+    data1 = session['profesional_actual']
+    print(data1)
+    id = session['profesional_actual'][0]
+    cur = mysql.connection.cursor()
+    # cambie (id) por [id] (agarra lista executable)
+    cur.execute('SELECT * FROM profesional WHERE id_profesional = %s', [id])
+    data = cur.fetchall()
+    return render_template('Edit_Professional.html', professional=data[0])
 
 
-@app.route('/professional/edit_professional')
-def edit_professional():
-    return 'edit professional'
+@app.route('/update_professional/<id>', methods=['POST'])
+def update_professional(id):
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        dni = request.form['dni']
+        telefono = request.form['telefono']
+        direccion = request.form['direccion']
+        email = request.form['email']
+        titulo = request.form['titulo']
+        es_prestador = request.form['es_prestador']
+        obra_social = request.form['obra_social']
+        institucion_educativa = request.form['institucion_educativa']
+        esta_matriculado = request.form['esta_matriculado']
+        matricula = request.form['matricula']
+        contraseña = request.form['contraseña']
+        repetir_contraseña = request.form['repetir_contraseña']
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            UPDATE profesional
+            SET nombre = %s,
+                apellido = %s,
+                dni = %s,
+                telefono = %s,
+                direccion = %s,
+                email = %s,
+                titulo = %s,
+                es_prestador = %s,
+                obra_social = %s,
+                institucion_educativa = %s,
+                esta_matriculado = %s,
+                matricula = %s,
+                contraseña = %s,
+                repetir_contraseña = %s
+            WHERE id_profesional = %s  
+            """, (nombre, apellido, dni, telefono, direccion, email, titulo, es_prestador, 
+            obra_social, institucion_educativa, esta_matriculado, 
+            matricula, contraseña, repetir_contraseña, id))
+        mysql.connection.commit()
+        return redirect(url_for('Personalized_Welcome'))
 
-
+ # ---- Solo disponible para un perfil administrador ---- 
 @app.route('/professional/delete_professional')
 def delete_professional():
     return 'delete professional'
@@ -151,91 +264,7 @@ def delete_patient(id):
     flash('Paciente removido satisfactoriamente')
     return redirect(url_for('Patient_List'))
 
-
-
-# ----------------------BIENVENIDA PERSONALIZADA--------------
-@app.route('/personalized_welcome')
-def Personalized_Welcomed():
-    return render_template('Personalized_Welcome.html')
-
-events = [
-    {
-        'todo' : 'Xiaomi',
-        'date' : '2022-06-07',
-    },
-    {
-        'todo' : 'Nora',
-        'date' : '2022-06-07',
-    },
-    {
-        'todo' : 'Marcos',
-        'date' : '2022-06-07',
-    },
-    {
-        'todo' : 'Gonzalo',
-        'date' : '2022-06-09',
-    },
-
-]
-
-@app.route('/calendar')
-def calendar():
-   return render_template('calendar.html',
-   events = events)
-
-# ------------------------INICIO------------------------------
-
-
-@app.route('/beginning')
-def Beginning():
-    return render_template('Beginning.html')
-
-# -En caso de querer comenzar con localhost:3000 
-@app.route('/')
-def New_Patient():
-    return render_template('Beginning.html')
-
-# ------------------------LOGIN------------------------------
-
-
-@app.route('/login')
-def Login():
-    if session.get('logueado'):
-       return render_template('Personalized_Welcome.html')
-    else:
-        
-        return render_template('Login.html')
-        
-    # ------------------------------LOGIN Verificación de datos--------------------------------------
-
-
-@app.route('/login', methods=['POST'])
-def do_admin_login():
-  login = request.form
-  
-  email = login['email']
-  password = login['password']
-
-  cur = mysql.connection.cursor()
-  cur.execute('SELECT * FROM profesional WHERE email = %s', [email])
-  profesional = cur.fetchone()
-  
-  if profesional is None:
-        flash("Ups! vuelve a intentarlo")
-        return Login();
-
-  password_db = profesional[13] #indice de la contraseña
-  
-  session['logueado'] = (password == password_db)
-  
-  return Login()
-
-@app.route('/logout')
-def logout():
-  session['logueado'] = False
-  return Login()
-
-  # ------------------------BUSCADOR------------------------------
+    # ------------------------BUSCADOR de Paciente------------------------------
 
 @app.route('/patient', methods=['POST'])
 def Patient_List_Filtered():
@@ -265,6 +294,38 @@ def Patient_List_Filtered():
     data = cur.fetchall()
     
     return render_template('Patient_List.html', paciente=data, currentvalue = currentvalue)
+
+# ----------------------BIENVENIDA PERSONALIZADA: Calendario--------------
+
+@app.route('/personalized_welcome')
+def Personalized_Welcome():
+    return render_template('Personalized_Welcome.html')
+
+events = [
+    {
+        'todo' : 'Xiaomi',
+        'date' : '2022-06-07',
+    },
+    {
+        'todo' : 'Nora',
+        'date' : '2022-06-07',
+    },
+    {
+        'todo' : 'Marcos',
+        'date' : '2022-06-07',
+    },
+    {
+        'todo' : 'Gonzalo',
+        'date' : '2022-06-09',
+    },
+
+]
+
+@app.route('/calendar')
+def calendar():
+   return render_template('calendar.html',
+   events = events)
+
 
 
 # ------------------------DEBUG---------------------------------
