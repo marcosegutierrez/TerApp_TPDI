@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2022 a las 23:34:35
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.11
+-- Tiempo de generación: 22-10-2022 a las 01:22:02
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `terapp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `especialidad`
+--
+
+CREATE TABLE `especialidad` (
+  `id_especialidad` int(11) NOT NULL,
+  `nombre` varchar(40) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `obra_social`
+--
+
+CREATE TABLE `obra_social` (
+  `id_obra_social` int(10) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `activo` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `obra_social`
+--
+
+INSERT INTO `obra_social` (`id_obra_social`, `nombre`, `activo`) VALUES
+(1, 'Galeno', 1),
+(2, 'Medicus', 1),
+(3, 'Osseg', 1),
+(4, 'Opdea', 1),
+(5, 'Sadiac', 1),
+(6, 'Hominis', 1),
+(7, 'Osdipp', 1),
+(8, 'Ospic', 1),
+(9, 'Elevar', 1),
+(10, 'Medicus', 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +97,14 @@ INSERT INTO `paciente` (`id`, `nombre`, `apellido`, `edad`, `tutor`, `obra_socia
 (39, 'Lidia', 'Medina', 51, '-', '-', 1, 11263324, 'medinalidia3@gmail.com', 42058978, 'Nazarre 3487', '-', '1960-06-02', '2021-11-01', '-'),
 (40, 'Marcos', 'Florentin', 68, 'Nora', 'Osde', 15786666, 45896531, 'marcos.fl@hotmail.com', 1123669868, 'nazarre 3545', '', '1953-05-05', '2021-11-01', '-'),
 (41, 'Ramon', 'Carrizo', 32, '-', 'Osecac', 2024569855, 24569855, 'carrizom@gmail.com', 1127589955, 'Avenida Nazca 2100', '', '1989-05-01', '2021-11-05', '-'),
-(42, 'Fabrizio', 'Avila', 24, '-', '-', 2, 24569855, 'avilaf@yahoo.com', 1589638626, 'cuenca 1230', '', '1997-01-25', '2021-11-10', '-');
+(44, 'Tomas Ricardo', 'Lujan', 16, 'Omar Perez', 'OSDE', 45236879, 59842366, 'tomas@gmail.com', 1145682387, 'Ramos Mejía', 'Parálisis Cerebral', '2008-12-15', '2022-10-04', 'Reflejos leves'),
+(45, 'Malena', 'Caseres', 31, '-', 'OSDE', 452169, 36568468, 'malena@gmail.com', 297425986, 'Puerto Deseado', 'Ansiedad y depresión', '1991-02-19', '2022-10-04', 'Turno online semanal'),
+(46, 'Jesus', 'Restrepo', 45, '-', '-', 0, 28451236, 'jesusrestrepo@gmail.com', 1145632787, 'Carabobo 73', 'Dislexia', '1949-06-19', '2022-10-04', 'Tratamiento'),
+(47, 'Lorena', 'Carcamo', 65, '-', '-', 0, 5416105, '-', 114570614, 'Nazca 315 2 A', 'Acumuladora', '1935-11-19', '2022-10-01', 'Reconoce problema de acumulación por apego'),
+(48, 'Edi', 'Cruz', 28, '-', '-', 0, 38125478, 'edi@gmail.com', 1155217485, 'Villa Luzuriaga', 'Obsesión compulsiva', '1996-12-18', '2022-10-05', 'Se presenta con su abuela a la consulta'),
+(52, 'Tomas', 'Ruiz', 0, '', '', 0, 0, '', 0, '', '', '0000-00-00', '0000-00-00', ''),
+(53, 'Edito', '', 45, '', '', 0, 0, '', 0, '', '', '0000-00-00', '0000-00-00', ''),
+(54, 'Nora', 'Avila', 0, 'avila@gmail.com', '', 0, 0, '', 0, '', '', '0000-00-00', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -67,6 +113,7 @@ INSERT INTO `paciente` (`id`, `nombre`, `apellido`, `edad`, `tutor`, `obra_socia
 --
 
 CREATE TABLE `profesional` (
+  `id_profesional` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `apellido` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dni` int(11) NOT NULL,
@@ -87,12 +134,19 @@ CREATE TABLE `profesional` (
 -- Volcado de datos para la tabla `profesional`
 --
 
-INSERT INTO `profesional` (`nombre`, `apellido`, `dni`, `telefono`, `direccion`, `email`, `titulo`, `es_prestador`, `obra_social`, `institucion_educativa`, `esta_matriculado`, `matricula`, `contraseña`, `repetir_contraseña`) VALUES
-('Nora', 'Barria', 36772320, 1567891022, 'San Miguel 2189', 'norabarria@gmail.com', 'Licenciada en Educación', 'SI', 'SMG', 'UBA', 'SI', '132698', '12345', '12345');
+INSERT INTO `profesional` (`id_profesional`, `nombre`, `apellido`, `dni`, `telefono`, `direccion`, `email`, `titulo`, `es_prestador`, `obra_social`, `institucion_educativa`, `esta_matriculado`, `matricula`, `contraseña`, `repetir_contraseña`) VALUES
+(1, 'Nora', 'Barria', 36661499, 1126332484, 'Miguel de Salcedo 1234', 'norabarria1@gmail.com', 'Técnico Superior de Análisis de Sistemas', 'Si', 'smg', 'UBA', 'Si', '133326', '12345', '12345'),
+(2, 'Ramon', 'Perez', 24561230, 2147483647, '25 de Mayo 361', 'ramon1@gmail.com', 'Psicólogo', 'No', '-', 'UAI', 'Si', '6325', 'ramon', 'ramon');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `especialidad`
+--
+ALTER TABLE `especialidad`
+  ADD PRIMARY KEY (`id_especialidad`);
 
 --
 -- Indices de la tabla `paciente`
@@ -101,14 +155,32 @@ ALTER TABLE `paciente`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `profesional`
+--
+ALTER TABLE `profesional`
+  ADD PRIMARY KEY (`id_profesional`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `especialidad`
+--
+ALTER TABLE `especialidad`
+  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT de la tabla `profesional`
+--
+ALTER TABLE `profesional`
+  MODIFY `id_profesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
