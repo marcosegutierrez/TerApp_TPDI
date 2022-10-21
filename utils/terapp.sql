@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2022 a las 01:43:47
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 22-10-2022 a las 01:33:28
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,34 @@ CREATE TABLE `especialidad` (
   `id_especialidad` int(11) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `obra_social`
+--
+
+CREATE TABLE `obra_social` (
+  `id_obra_social` int(10) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `activo` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `obra_social`
+--
+
+INSERT INTO `obra_social` (`id_obra_social`, `nombre`, `activo`) VALUES
+(1, 'Galeno', 1),
+(2, 'Medicus', 1),
+(3, 'Osseg', 1),
+(4, 'Opdea', 1),
+(5, 'Sadiac', 1),
+(6, 'Hominis', 1),
+(7, 'Osdipp', 1),
+(8, 'Ospic', 1),
+(9, 'Elevar', 1),
+(10, 'Medicus', 1);
 
 -- --------------------------------------------------------
 
