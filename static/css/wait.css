@@ -1,0 +1,46 @@
+.wait-r {
+    margin-top: 23%;
+}
+
+.wait-r h1 {
+    text-align: center;
+    color: black;
+}
+
+.wait-r #section {
+    text-align: center;
+}
+
+.wait-r button {
+    border: none;
+    background-color: green;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    cursor: pointer;
+}
+
+.wait-r #minClick {
+    background-color: orange;
+}
+
+.wait-r #btnClear {
+    background-color: orangered;
+}
+
+.wait-r p {
+    color: black;
+    /* background-color: springgreen; */
+}
+
+.wait-r button:hover {
+    background-color: Limegreen;
+}
+
+#waiting {
+    font-size: 45px;
+    font-weight: 800;
+    margin: 10px;
+}
