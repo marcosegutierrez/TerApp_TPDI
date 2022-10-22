@@ -65,7 +65,7 @@ def do_admin_login():
         return Login();
 
   password_db = profesional[13] #indice de la contraseña
-  
+  session['profesional_actual'] = profesional;
   session['logueado'] = (password == password_db)
 
   return Login()
@@ -73,6 +73,7 @@ def do_admin_login():
 @app.route('/logout')
 def logout():
   session['logueado'] = False
+  session['profesional_actual'] = None
   return Login()
 
 
@@ -114,13 +115,14 @@ def add_professional():
      #---Editar perfil profesional--
 @app.route('/edit_professional')
 def get_profesional():
-    data1 = session['profesional_actual']
-    print(data1)
-    id = session['profesional_actual'][0]
+    profesional_actual = session['profesional_actual']
+    id_profesional_actual = session['profesional_actual'][0]
+    
     cur = mysql.connection.cursor()
     # cambie (id) por [id] (agarra lista executable)
-    cur.execute('SELECT * FROM profesional WHERE id_profesional = %s', [id])
+    cur.execute('SELECT * FROM profesional WHERE id_profesional = %s', [id_profesional_actual])
     data = cur.fetchall()
+    
     return render_template('Edit_Professional.html', professional=data[0])
 
 
