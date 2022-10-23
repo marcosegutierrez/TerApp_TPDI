@@ -27,15 +27,15 @@
                 <input type="text" name="obra_social" value="{{ professional.9}}" class="form-control ">
                 <label for="institucion_educativa">Institución educativa que emite el título:</label>
                 <input type="text" name="institucion_educativa" value="{{ professional.10}}" class="form-control ">
-                <label for="esta_matriculado">Posee matrícula:</label>
-                <input type="text" name="esta_matriculado" value="{{ professional.11}}" class="form-control ">
+                <label for="esta_matriculado">Matricula:</label><br>
+                <input type="radio" name="esta_matriculado" value="Si">Si<br>
+                <input type="radio" name="esta_matriculado" value="No">No<br>
                 <label for="matricula">Indique su matrícula:</label>
                 <input type="number" pattern="/^-?\d+\.?\d*$/" name="matricula" value="{{ professional.12}}" class="form-control " onKeyPress="if(this.value.length==10) return false;">
                 <label for="contraseña">Ingrese su contraseña:</label>
                 <input type="password" name="contraseña" value="{{ professional.13}}" class="form-control ">
                 <label for="repetir_contraseña">Repetir contraseña:</label>
                 <input type="password" name="repetir_contraseña" value="{{ professional.14}}" class="form-control ">
-                
                 <div class="offset-md-3">
                     <button type="submit" class="btn btn-primary btn-bg mx-4 my-5">
                        Guardar
