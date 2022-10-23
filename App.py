@@ -56,7 +56,7 @@ def do_admin_login():
         return Login();
 
   cur = mysql.connection.cursor()
-  cur.execute('SELECT * FROM profesional WHERE email = %s', [email])
+  cur.execute('SELECT * FROM profesional WHERE email = %s or contraseña = %s', [email,password])
 
   profesional = cur.fetchone()
 
@@ -67,7 +67,7 @@ def do_admin_login():
   password_db = profesional[13] #indice de la contraseña
   session['profesional_actual'] = profesional;
   session['logueado'] = (password == password_db)
-
+  
   return Login()
 
 @app.route('/logout')
