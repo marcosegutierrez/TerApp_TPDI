@@ -139,7 +139,7 @@ def update_professional(id):
         es_prestador = request.form['es_prestador']
         obra_social = request.form['obra_social']
         institucion_educativa = request.form['institucion_educativa']
-        esta_matriculado = request.form['esta_matriculado']
+        esta_matriculado = request.form.get('esta_matriculado')
         matricula = request.form['matricula']
         contraseña = request.form['contraseña']
         repetir_contraseña = request.form['repetir_contraseña']

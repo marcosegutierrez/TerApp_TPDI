@@ -21,15 +21,22 @@
                 <input type="text" name="email" value="{{ professional.6}}" class="form-control ">
                 <label for="titulo">Título:</label>
                 <input type="text" name="titulo" value="{{ professional.7}}" class="form-control ">
+                
+                
                 <label for="es_prestador">Prestador de cobertura médica:</label>
-                <input type="text" name="es_prestador" value="{{ professional.8}}" class="form-control ">
+                <input type="text" name="es_prestador" value="{{ professional.8}}" class="form-control ">  
+
+                
                 <label for="obra_social">Indique la obra social:</label>
                 <input type="text" name="obra_social" value="{{ professional.9}}" class="form-control ">
                 <label for="institucion_educativa">Institución educativa que emite el título:</label>
                 <input type="text" name="institucion_educativa" value="{{ professional.10}}" class="form-control ">
+               
+               
                 <label for="esta_matriculado">Matricula:</label><br>
                 <input type="radio" name="esta_matriculado" value="Si">Si<br>
                 <input type="radio" name="esta_matriculado" value="No">No<br>
+               
                 <label for="matricula">Indique su matrícula:</label>
                 <input type="number" pattern="/^-?\d+\.?\d*$/" name="matricula" value="{{ professional.12}}" class="form-control " onKeyPress="if(this.value.length==10) return false;">
                 <label for="contraseña">Ingrese su contraseña:</label>
