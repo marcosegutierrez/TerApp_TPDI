@@ -136,7 +136,7 @@ def update_professional(id):
         direccion = request.form['direccion']
         email = request.form['email']
         titulo = request.form['titulo']
-        es_prestador = request.form['es_prestador']
+        es_prestador = request.form.get('es_prestador')
         obra_social = request.form['obra_social']
         institucion_educativa = request.form['institucion_educativa']
         esta_matriculado = request.form.get('esta_matriculado')
