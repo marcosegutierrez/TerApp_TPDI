@@ -17,7 +17,8 @@
             <input type="text" name="tutor" placeholder="Nombre completo" value="{{ patient.4}}" class="form-control">
             <label for="obra_social">Obra Social:</label>
             <select name="obra_social" value="{{ patient.5}}" class="form-control">
-                <option>Seleccione obra social</option>
+                <option disabled=""> Seleccione una opción...</option>
+                <option>No aplica</option>
                 <option>Galeno</option>
                 <option>Swiss Medical</option>
                 <option>Sancor Salud</option>
@@ -27,7 +28,7 @@
             </select>
             <label for="n_afiliado">N° Afiliado:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" value="{{ patient.6}}" class="form-control" onKeyPress="if(this.value.length==16) return false;" required>
-            <label for="dni">DNI::</label>
+            <label for="dni">DNI:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos" value="{{ patient.7}}" class="form-control"  onKeyPress="if(this.value.length==8) return false;" required>
             <label for="email">Email:</label>
             <input type="text" name="email" value="{{ patient.8}}" class="form-control">
@@ -46,8 +47,8 @@
 
             <div class="offset-md-3">
                 <button type="submit" class="btn btn-primary btn-bg mx-4 my-5">
-                   Guardar
-                </button>
+                    Guardar
+                 </button>
 
                 <a href="/patient">
                     <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 my-5 ">

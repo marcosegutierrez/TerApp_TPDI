@@ -30,7 +30,8 @@
 
                 <label for="obra_social">Indique la obra social:</label>
                 <select name="obra_social" value="{{ professional.9}}" class="form-control" required>
-                    <option>Seleccione obra social...</option>
+                    <option disabled=""> Seleccione una opción...</option>
+                    <option>No aplica</option>
                     <option>Galeno</option>
                     <option>Swiss Medical</option>
                     <option>Sancor Salud</option>
@@ -56,8 +57,8 @@
                 <input type="password" name="repetir_contraseña" value="{{ professional.14}}" class="form-control ">
                 <div class="offset-md-3">
                     <button type="submit" class="btn btn-primary btn-bg mx-4 my-5">
-                       Guardar
-                    </button>
+                        Guardar
+                     </button>
                                         
                     <a href="/personalized_welcome">
                         <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 my-5 ">

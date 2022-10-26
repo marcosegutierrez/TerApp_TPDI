@@ -27,10 +27,10 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `especialidad`
 --
 
-CREATE TABLE `especialidad` (
+/* CREATE TABLE `especialidad` (
   `id_especialidad` int(11) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci */;
 
 -- --------------------------------------------------------
 
@@ -147,8 +147,8 @@ INSERT INTO `profesional` (`id_profesional`, `nombre`, `apellido`, `dni`, `telef
 --
 -- Indices de la tabla `especialidad`
 --
-ALTER TABLE `especialidad`
-  ADD PRIMARY KEY (`id_especialidad`);
+/*ALTER TABLE `especialidad`
+  ADD PRIMARY KEY (`id_especialidad`)*/;
 
 --
 -- Indices de la tabla `paciente`
@@ -169,8 +169,8 @@ ALTER TABLE `profesional`
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
 --
-ALTER TABLE `especialidad`
-  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT;
+/*ALTER TABLE `especialidad`
+  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT*/;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`

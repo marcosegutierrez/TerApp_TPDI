@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask.globals import request
 from flask_mysqldb import MySQL
