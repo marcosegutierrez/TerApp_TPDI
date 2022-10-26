@@ -95,17 +95,17 @@ def add_professional():
         direccion = request.form['direccion']
         email = request.form['email']
         titulo = request.form['titulo']
+        institucion_educativa = request.form['institucion_educativa']
         es_prestador = request.form['es_prestador']
         obra_social = request.form['obra_social']
-        institucion_educativa = request.form['institucion_educativa']
         esta_matriculado = request.form['esta_matriculado']
         matricula = request.form['matricula']
         contraseña = request.form['contraseña']
         repetir_contraseña = request.form['repetir_contraseña']
 
         cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO profesional (nombre, apellido, dni, telefono, direccion, email, titulo, es_prestador, obra_social, institucion_educativa, esta_matriculado, matricula, contraseña, repetir_contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-                    (nombre, apellido, dni, telefono, direccion, email, titulo, es_prestador, obra_social, institucion_educativa, esta_matriculado, matricula, contraseña, repetir_contraseña))
+        cur.execute('INSERT INTO profesional (nombre, apellido, dni, telefono, direccion, email, titulo, institucion_educativa, es_prestador, obra_social, esta_matriculado, matricula, contraseña, repetir_contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                    (nombre, apellido, dni, telefono, direccion, email, titulo, institucion_educativa, es_prestador, obra_social, esta_matriculado, matricula, contraseña, repetir_contraseña))
         mysql.connection.commit()
         flash('Registro exitoso! Ingresa con tus credenciales')
         return redirect(url_for('Login'))
@@ -135,10 +135,10 @@ def update_professional(id):
         direccion = request.form['direccion']
         email = request.form['email']
         titulo = request.form['titulo']
-        es_prestador = request.form.get('es_prestador')
-        obra_social = request.form['obra_social']
         institucion_educativa = request.form['institucion_educativa']
-        esta_matriculado = request.form.get('esta_matriculado')
+        es_prestador = request.form['es_prestador']
+        obra_social = request.form['obra_social']
+        esta_matriculado = request.form['esta_matriculado']
         matricula = request.form['matricula']
         contraseña = request.form['contraseña']
         repetir_contraseña = request.form['repetir_contraseña']
@@ -152,16 +152,16 @@ def update_professional(id):
                 direccion = %s,
                 email = %s,
                 titulo = %s,
+                institucion_educativa = %s,
                 es_prestador = %s,
                 obra_social = %s,
-                institucion_educativa = %s,
                 esta_matriculado = %s,
                 matricula = %s,
                 contraseña = %s,
                 repetir_contraseña = %s
             WHERE id_profesional = %s  
-            """, (nombre, apellido, dni, telefono, direccion, email, titulo, es_prestador, 
-            obra_social, institucion_educativa, esta_matriculado, 
+            """, (nombre, apellido, dni, telefono, direccion, email, titulo, institucion_educativa,
+            es_prestador, obra_social, esta_matriculado, 
             matricula, contraseña, repetir_contraseña, id))
         mysql.connection.commit()
         return redirect(url_for('Personalized_Welcome'))
