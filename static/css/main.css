@@ -125,4 +125,16 @@ nav{
     margin-top:4px ;
     padding: 2px;  
 }
-
+select {
+    background-image: url(/static/img/flecha.png); /*aquí deberás escribir la ruta de la imagen que utilizarás como flecha del desplegable*/
+    background-repeat: no-repeat;
+    background-position: right;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    
+    }
+    select::-ms-expand {
+    display: none; /*Evita que se muestre la flecha por defecto en versiones de IE*/
+    }

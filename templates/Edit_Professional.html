@@ -26,11 +26,33 @@
 
                 <!-- Sección a modificar presentación-->
                 
-                <label for="es_prestador">Prestador de cobertura médica:</label><br>
+                <!--<label for="es_prestador">Prestador de cobertura médica:</label><br>
                 <input type="text" name="es_prestador" value="{{ professional.9}}" class="form-control ">
+                -->
 
+                <label for="es_prestador">¿Es prestador de cobertura médica?:</label><br>
+                <div class="radio_button">
+                <input type="radio" name="es_prestador" value="Si">Si<br>
+                <input type="radio" name="es_prestador" value="No">No<br>       
+
+                </div>
+
+                
                 <label for="obra_social">Indique la obra social:</label>
-                <input type="text" name="obra_social" value="{{ professional.10}}" class="form-control ">
+                <select name="obra_social" value="{{ professional.10}}" class="seleccion form-control" required>
+                    <option>Seleccione obra social...</option>
+                    <option value="Galeno">Galeno</option>
+                    <option value="Medicus">Medicus</option>
+                    <option value ="Osseg">Osseg</option>
+                    <option value="Opdea">Opdea</option>
+                    <option value="Hominis">Hominis</option>
+                    <option value="Osdipp">Osdipp</option>
+                    <option value="Ospic">Ospic</option>
+                    <option value="Elevar">Elevar</option>
+                    <option value="Medicus">Medicus</option>
+                </select>
+                <!--<label for="obra_social">Indique la obra social:</label>
+                <input type="text" name="obra_social" value="{{ professional.10}}" class="form-control ">-->
                
                 <label for="esta_matriculado">Matrícula:</label><br>
                 <input type="text" name="esta_matriculado" value="{{ professional.11}}" class="form-control ">
