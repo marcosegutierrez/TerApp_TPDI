@@ -133,8 +133,16 @@ select {
     -moz-appearance: none;
     -o-appearance: none;
     appearance: none;
-    
-    }
-    select::-ms-expand {
+}
+
+select::-ms-expand {
     display: none; /*Evita que se muestre la flecha por defecto en versiones de IE*/
-    }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] { -moz-appearance:textfield; }

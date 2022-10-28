@@ -8,41 +8,61 @@
                 
                 <h2 class="text-center">MI PERFIL PROFESIONAL</h2>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" class="form-control ">
+                <input type="text" name="nombre" class="form-control" required/>
                 <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" class="form-control ">
+                <input type="text" name="apellido" class="form-control" required/>
                 <label for="dni">DNI:</label>
-                <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos ni comas" class="form-control " onKeyPress="if(this.value.length==8) return false;">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos ni comas" class="form-control " onKeyPress="if(this.value.length==8) return false;" required/>
                 <label for="telefono">Teléfono:</label>
-                <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir características" class="form-control " onKeyPress="if(this.value.length==15) return false;">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir características" class="form-control " onKeyPress="if(this.value.length==15) return false;" required/>
                 <label for="direccion">Dirección:</label>
-                <input type="text" name="direccion" class="form-control ">
+                <input type="text" name="direccion" class="form-control">
                 <label for="email">E-mail:</label>
-                <input type="text" name="email" class="form-control ">
+                <input type="text" name="email" class="form-control" required/>
                 <label for="titulo">Título:</label>
-                <input type="text" name="titulo" class="form-control ">
+                <input type="text" name="titulo" class="form-control" required/>
                 <label for="institucion_educativa">Institución educativa que emite el título:</label>
-                <input type="text" name="institucion_educativa" class="form-control ">
+                <input type="text" name="institucion_educativa" class="form-control" required/>
 
                 <!-- Sección a modificar presentación-->
 
-                <label for="es_prestador">Prestador de cobertura médica:</label>
-                <input type="text" name="es_prestador" class="form-control ">
+                <label for="es_prestador">¿Es prestador de cobertura médica?:</label><br>
+                <div class="radio_button">
+                <input type="radio" name="es_prestador" value="Si" required/>Si<br>
+                <input type="radio" name="es_prestador" value="No" required/>No<br>       
+
+                </div>
+                <!--<label for="es_prestador">Prestador de cobertura médica:</label>
+                <input type="text" name="es_prestador" class="form-control ">-->
 
                 <label for="obra_social">Indique la obra social:</label>
-                <input type="text" name="obra_social" class="form-control ">
+                <select name="obra_social" class="seleccion form-control" required>
+                    <option value="0">Seleccione obra social...</option>
+                    <option value="Galeno">Galeno</option>
+                    <option value="Medicus">Medicus</option>
+                    <option value ="Osseg">Osseg</option>
+                    <option value="Opdea">Opdea</option>
+                    <option value="Hominis">Hominis</option>
+                    <option value="Osdipp">Osdipp</option>
+                    <option value="Ospic">Ospic</option>
+                    <option value="Elevar">Elevar</option>
+                    <option value="Medicus">Medicus</option>
+                </select>
+
+                <!--<label for="obra_social">Indique la obra social:</label>
+                <input type="text" name="obra_social" class="form-control ">-->
                 
                 <label for="esta_matriculado">Posee matrícula:</label>
-                <input type="text" name="esta_matriculado" class="form-control ">
+                <input type="text" name="esta_matriculado" class="form-control" required/>
 
                 <!---->
 
                 <label for="matricula">Indique su matrícula:</label>
-                <input type="number" pattern="/^-?\d+\.?\d*$/" name="matricula" class="form-control " onKeyPress="if(this.value.length==10) return false;">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" name="matricula" class="form-control " onKeyPress="if(this.value.length==10) return false;" required/>
                 <label for="contraseña">Ingrese su contraseña:</label>
-                <input type="password" name="contraseña" class="form-control ">
+                <input type="password" name="contraseña" class="form-control" required/>
                 <label for="repetir_contraseña">Repetir contraseña:</label>
-                <input type="password" name="repetir_contraseña" class="form-control ">
+                <input type="password" name="repetir_contraseña" class="form-control" required/>
                 
                 <div class="offset-md-3">
                     <button type="submit" class="btn btn-primary btn-bg mx-4 my-5">
