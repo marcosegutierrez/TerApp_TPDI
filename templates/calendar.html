@@ -1,51 +1,116 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<head>
-<title>Agenda</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
-</head>
-<div class="col-md-5 pt-4 offset-md-4">
-    <div class="card card-body">
-        <h1 class="text-center">Agenda</h1>
-        <label for="Día_turno">Día:</label>
-        <input type="text" name="Día" placeholder="#" value="año / mes / día" class="#">
-        <label for="referencia">Agendar como:</label>
-        <input type="text" name="referencia" placeholder="#" value="nombre de referencia" class="#">
-        <div class="btn-toolbar offset-md-1 ">
-        <div id="calendar"></div>
-        <script>
-            let calendarEl = document.getElementById
-            ('calendar');
-
-            let calendar = new FullCalendar.Calendar
-            (calendarEl, {
-                events : [
-                    {% for event in events %}
-                    {
-                        title : '{{event.todo}}',
-                        start : '{{event.date}}',
-                    },
-                    {% endfor%}
-                ]
-            });
-
-            calendar.render();
-        </script>
-            <button type="submit" class="btn btn-primary btn-bg mx-4">
-                Reservar
-            </button>
-            <button type="submit" class="btn btn-primary btn-bg mx-4">
-                Anular
-            </button>
-                                
-            <a href="/personalized_welcome">
-                <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4">
-            </a>
-         </div>
-        <h6 class="text-center">TerApp© Todos los derechos reservados.</h6>
+<div class="pt-4">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+        </button>
     </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="row">
+        <div class="col-md-5">
+            <div id="tarjeta_paciente" class="card card-body text-black bg-primary">
+                <form action="/patient/add_patient" method="POST" class="">
+
+                    <h2 class="text-center">Agenda de Turnos</h2>
+                    <br>
+                    <label for="nombre">Nombre y Apellido</label>
+                    <input type="text" name="nombre" class="form-control">
+                    
+                    <label for="fecha_de_nacimiento">Fecha de turno:</label>
+                    <input type="date" name="fecha_de_nacimiento" placeholder="Fecha de Nacimiento" class="form-control">
+                    
+                    
+                    <label for="observaciones">Observaciones:</label>
+                    <input type="text" name="observaciones" class="form-control">
+
+                    <div class="offset-md-4">
+                        <button type="submit" class="btn btn-info btn-sm mx-4 my-4">
+                            Guardar
+                            </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div id="tarjeta_paciente" class="card card-body bg-secondary">
+                <h2 class="text-center text-black">Mis turnos</h2>
+<!-- BUSCADOR -->
+
+                <div class="col-md-10 ">
+                    <form action="/patient" method="POST">
+                        <input type="search" id="input-search" name="input-search" placeholder="Buscar aqui" class="form-group" />
+                        <button type="submit" class="btn btn-info btn-sm mx-2 my-4">Buscar</button>
+                        <br>
+                        <label class="form-group text-dark" id="search-label">Filtro actual: {{ currentvalue }}</label>
+                    </form>
+                    <br>
+                </div>
+            
+
+<!-- FIN BUSCADOR -->
+
+            <div class="form-group form-control text table-responsive container-fluid">
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <td>Nombre y Apellido</td>
+                            <td>Día y horario</td>
+                            <td>Observaciones</td>
+                            <td colspan="2" class="text-center">Operaciones</td>
+                        </tr>
+                    </thead>
+                    <tbody class="pbody">
+                    {% for paciente in paciente %}
+                        <tr>
+                            <td>{{ paciente.1 }}</td>
+                            <td>{{ paciente.2 }}</td>
+                            <td>{{ paciente.3 }}</td>
+                            <td>{{ paciente.4 }}</td>
+                            <td>{{ paciente.5 }}</td>
+                            <td>{{ paciente.6 }}</td>
+                            <td>{{ paciente.7 }}</td>
+                            <td>{{ paciente.8 }}</td>
+                            <td>{{ paciente.9 }}</td>
+                            <td>{{ paciente.10 }}</td>
+                            <td>{{ paciente.11 }}</td>
+                            <td>{{ paciente.12 }}</td>
+                            <td>{{ paciente.13 }}</td>
+                            <td>{{ paciente.14 }}</td>
+
+                            <td>
+                                <div class="">
+                                    <a href="/patient/edit_patient/{{paciente.0}}">
+                                        <input type="button" class="btn btn-success btn-sm mx-4 " value="Editar">
+                                    </a>
+                            </td>
+                            <td>
+                                <a href="/patient/delete_patient/{{paciente.0}}">
+                                    <input type="button" class="btn btn-danger btn-sm mx-4 btn-delete" value="Eliminar">
+                                </a>
+
+                            </td>
+                        </tr>
+                    </div>
+    {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        </div>
+    </div> 
+</div>
+<br>
+<div id="boton_volver">
+    <a href="/personalized_welcome">
+        <input type="button" value="Volver" class="btn btn-success btn-bg mx-4 col-md-2">
+    </a>
 </div>
 
 
