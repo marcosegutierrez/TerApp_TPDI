@@ -8,9 +8,9 @@
                 
                 <h2 class="text-center">MI PERFIL PROFESIONAL</h2>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" class="form-control" required/>
+                <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                 <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" class="form-control" required/>
+                <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                 <label for="dni">DNI:</label>
                 <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos ni comas" class="form-control " onKeyPress="if(this.value.length==8) return false;" required/>
                 <label for="telefono">Teléfono:</label>

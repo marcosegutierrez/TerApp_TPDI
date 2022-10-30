@@ -22,13 +22,13 @@
                     <h2 class="text-center">Planilla de registro</h2>
                     <br>
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" class="form-control">
+                    <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" class="form-control">
+                    <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control">
                     <label for="edad">Edad:</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" class="form-control" onKeyPress="if(this.value.length==2) return false;">
                     <label for="tutor">Tutor:</label>
-                    <input type="text" name="tutor" placeholder="Nombre completo" class="form-control">
+                    <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" class="form-control">
                     <label for="obra_social">Obra Social:</label>
                     <input type="text" name="obra_social" class="form-control">
                     <label for="n_afiliado">Número de afiliado</label>

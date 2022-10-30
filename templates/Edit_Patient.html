@@ -8,13 +8,13 @@
             <h2 class="text-center">Ficha</h2>
             <br>
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" value="{{ patient.1}}" class="form-control" required/>
+            <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre" value="{{ patient.1}}" class="form-control" required/>
             <label for="apellido">Apellido:</label>
-            <input type="text" name="apellido" value="{{ patient.2}}" class="form-control" required/>
+            <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" value="{{ patient.2}}" class="form-control" required/>
             <label for="edad">Edad:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" value="{{ patient.3}}" class="form-control" onKeyPress="if(this.value.length==2) return false;" required/>
             <label for="tutor">Tutor:</label>
-            <input type="text" name="tutor" placeholder="Nombre completo" value="{{ patient.4}}" class="form-control" required/>
+            <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" value="{{ patient.4}}" class="form-control" required/>
 
             <label for="obra_social">Obra Social:</label>
             <select name="obra_social" value="{{ patient.5}}" class="form-control" required>
