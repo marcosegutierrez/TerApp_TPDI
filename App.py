@@ -327,8 +327,6 @@ def calendar():
    return render_template('calendar.html',
    events = events)
 
-
-
 # ------------------------DEBUG---------------------------------
 
 
