@@ -22,37 +22,30 @@
   {% endif %}
   {% endwith %}
 
-  <div class="card card-body text-center">
-    <h1>Bienvenido a
-      <br>
-      <img src="../static/img/terapplogo.png" class="log img-fluid img-responsive" alt="Responsive image">
-    </h1>
-    <div class="col text-center">
-      <a href="/login">
-        <input type="button" class="btn btn-primary btn-bg mx-4 " value="Ingresar">
-      </a>
-
-      <a href="/professional">
-        <input type="button" class="btn btn-primary btn-bg " value="Registrarme">
-      </a>
-    </div>
-  </div>
-
   <div class="card card-body text-center wait-r">
     <div>
       <h1>Sala de espera</h1>
     </div>
     <section>
       <button id="plusClick">Anotarme</button>
-      <button id="minClick">Atendido</button><!-- Solo profesional -->
-      <button id="btnClear">Resetear</button><!-- Solo profesional -->
       <p id="waiting"></p>
     </section>
   </div>
-</div>
 
-<script src="/static/js/wait.js"></script>
+  <form action="/waitingUpdate" method="POST">
+    <div class="card card-body text-center wait-r">
+      <div>
+        <h1>Sala de espera 2</h1>
+      </div>
+      <section>
+        <button id="plusClick">Anotarme</button>
+        {% for en_espera in en_espera %}
+        <p id="waiting" name="waiting">{{ en_espera.1 }}</p>
+        {% endfor %}
+      </section>
+    </div>
+  </form>
 
-</html>
+  <script src="/static/js/wait.js"></script>
 
-{% endblock %}
+  {% endblock %}
