@@ -22,31 +22,31 @@
                     <h2 class="text-center">Planilla de registro</h2>
                     <br>
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control">
+                    <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                     <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control">
+                    <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                     <label for="edad">Edad:</label>
-                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" class="form-control" onKeyPress="if(this.value.length==2) return false;">
+                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="edad" class="form-control" onKeyPress="if(this.value.length==2) return false;" required/>
                     <label for="tutor">Tutor:</label>
                     <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" class="form-control">
                     <label for="obra_social">Obra Social:</label>
-                    <input type="text" name="obra_social" class="form-control">
+                    <input type="text" name="obra_social" class="form-control" required/>
                     <label for="n_afiliado">Número de afiliado</label>
-                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" class="form-control" onKeyPress="if(this.value.length==16) return false;">
+                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" class="form-control" onKeyPress="if(this.value.length==16) return false;" required/>
                     <label for="dni">DNI:</label>
-                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos o comas" class="form-control" onKeyPress="if(this.value.length==8) return false;">
+                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos o comas" class="form-control" onKeyPress="if(this.value.length==8) return false;" required/>
                     <label for="email">Email:</label>
-                    <input type="text" name="email" class="form-control">
+                    <input type="text" name="email" class="form-control" required/>
                     <label for="telefono">Télefono principal:</label>
-                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir característica" class="form-control" onKeyPress="if(this.value.length==15) return false;">
+                    <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir característica" class="form-control" onKeyPress="if(this.value.length==15) return false;" required/>
                     <label for="domicilio">Domicilio / Barrio / Localidad:</label>
                     <input type="text" name="domicilio" class="form-control">
                     <label for="diagnostico">Diagnóstico:</label>
-                    <input type="text" name="diagnostico" class="form-control">
+                    <input type="text" name="diagnostico" class="form-control" required/>
                     <label for="fecha_de_nacimiento">Fecha de Nacimiento:</label>
-                    <input type="date" name="fecha_de_nacimiento" placeholder="Fecha de Nacimiento" class="form-control">
+                    <input type="date" name="fecha_de_nacimiento" placeholder="Fecha de Nacimiento" class="form-control" required/>
                     <label for="fecha_de_ingreso">Fecha de Ingreso:</label>
-                    <input type="date" name="fecha_de_ingreso" placeholder="Fecha de Ingreso" class="form-control">
+                    <input type="date" name="fecha_de_ingreso" placeholder="Fecha de Ingreso" class="form-control" required/>
                     <label for="observaciones">Observaciones:</label>
                     <input type="text" name="observaciones" class="form-control">
 
