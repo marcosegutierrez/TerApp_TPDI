@@ -327,6 +327,15 @@ def calendar():
    return render_template('calendar.html',
    events = events)
 
+# ------------------------CONTACTO---------------------------------
+@app.route('/contact')
+def contact():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM profesional')
+    data = cur.fetchall()
+    return render_template('contact.html', profesional=data)#,paciente=data
+
+
 # ------------------------DEBUG---------------------------------
 
 
