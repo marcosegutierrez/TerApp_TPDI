@@ -203,7 +203,7 @@ def add_patient():
         cur.execute('INSERT INTO paciente (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones))
         mysql.connection.commit()
-        flash('Paciente agregado satisfactoriamente')
+        flash('Paciente agregado con éxito')
         return redirect(url_for('Patient_List'))
 
 
@@ -251,9 +251,10 @@ def update_patient(id):
                 fecha_de_ingreso = %s,
                 observaciones = %s
             WHERE id = %s  
-            """, (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones, id))
+            """, (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, 
+            diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones, id))
         mysql.connection.commit()
-        flash('Paciente editado satisfactoriamente')
+        flash('Paciente editado con éxito')
         return redirect(url_for('Patient_List'))
 
 
@@ -262,7 +263,7 @@ def delete_patient(id):
     cur = mysql.connection.cursor()
     cur.execute('DELETE FROM paciente WHERE id = {0}'.format(id))
     mysql.connection.commit()
-    flash('Paciente removido satisfactoriamente')
+    flash('Paciente removido con éxito')
     return redirect(url_for('Patient_List'))
 
     # ------------------------BUSCADOR de Paciente------------------------------
@@ -296,11 +297,94 @@ def Patient_List_Filtered():
     
     return render_template('Patient_List.html', paciente=data, currentvalue = currentvalue)
 
-# ----------------------BIENVENIDA PERSONALIZADA: Calendario--------------
+# ----------------------Agenda--------------
+
+@app.route('/agenda')
+def agenda():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM agenda')
+    data = cur.fetchall()
+    return render_template('agenda.html', agenda=data)
+
+@app.route('/agenda/add_turno', methods=['POST'])  # el botón guardar
+def add_turno():
+    if request.method == 'POST':
+        nombre_apellido = request.form['nombre_apellido']
+        fecha_hora = request.form['fecha_hora']
+        observaciones = request.form['observaciones']
+
+        cur = mysql.connection.cursor()
+        cur.execute('INSERT INTO agenda (nombre_apellido, fecha_hora, observaciones) VALUES (%s, %s, %s)',
+                    (nombre_apellido, fecha_hora, observaciones))
+        mysql.connection.commit()
+        flash('Turno agregado con éxito')
+        return redirect(url_for('agenda'))
+
+@app.route('/agenda/edit_turno/<id>')
+def get_turno(id):
+    cur = mysql.connection.cursor()
+    # cambie (id) por [id] (agarra lista executable)
+    cur.execute('SELECT * FROM agenda WHERE id = %s', [id])
+    data = cur.fetchall()
+    return render_template('agenda.html', agenda=data[0])
+
+
+@app.route('/update_turno/<id>', methods=['POST'])
+def update_turno(id):
+    if request.method == 'POST':
+        nombre_apellido = request.form['nombre_apellido']
+        fecha_hora = request.form['fecha_hora']
+        observaciones = request.form['observaciones']
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            UPDATE agenda
+            SET nombre_apellido = %s,
+                fecha_hora = %s,
+                observaciones = %s
+            WHERE id = %s  
+            """, (nombre_apellido, fecha_hora, observaciones, id))
+        mysql.connection.commit()
+        flash('Turno editado con éxito')
+        return redirect(url_for('agenda'))
+
+@app.route('/agenda/delete_turno/<string:id>')
+def delete_turno(id):
+    cur = mysql.connection.cursor()
+    cur.execute('DELETE FROM agenda WHERE id = {0}'.format(id))
+    mysql.connection.commit()
+    flash('Turno removido con éxito')
+    return redirect(url_for('agenda'))
+
+         # ------------------------BUSCADOR de Agenda------------------------------
+
+@app.route('/agenda', methods=['POST'])
+def agenda_Filtered():
+    busqueda = request.form['input-search']
+
+    if busqueda == "":
+        return agenda()
+
+    currentvalue = busqueda
+
+    query = "SELECT * FROM agenda WHERE "
+    query += "nombre_apellido LIKE '%" + busqueda + "%' OR "
+    query += "fecha_hora LIKE '%" + busqueda + "%' OR "
+    query += "observaciones LIKE '%" + busqueda + "%'"
+
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    
+    return render_template('agenda.html', agenda=data, currentvalue = currentvalue)
+    
+    #--- Ruta que da funcionalidad al botón Volver en cada vista ---
 
 @app.route('/personalized_welcome')
 def Personalized_Welcome():
-    return render_template('Personalized_Welcome.html')
+        return render_template('Personalized_Welcome.html')
+
+
+#--- porcion de cosigo que no cumple función
 
 events = [
     {
@@ -327,7 +411,10 @@ def calendar():
    return render_template('calendar.html',
    events = events)
 
+   
+
 # ------------------------CONTACTO---------------------------------
+
 @app.route('/contact')
 def contact():
     cur = mysql.connection.cursor()
@@ -337,6 +424,7 @@ def contact():
     
 
 # -------------------PACIENTES EN ESPERA--------------------
+
 @app.route('/waiting')
 def waiting():
     cur = mysql.connection.cursor()

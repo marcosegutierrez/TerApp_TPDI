@@ -198,3 +198,41 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- 1/11/2022 Se crea tabla AGENDA
+--
+-- Estructura de tabla para la tabla `agenda`
+--
+
+CREATE TABLE `agenda` (
+  `id` int(11) NOT NULL,
+  `nombre_apellido` varchar(40) NOT NULL,
+  `fecha_hora` datetime NOT NULL,
+  `observaciones` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `agenda`
+--
+
+INSERT INTO `agenda` (`id`, `nombre_apellido`, `fecha_hora`, `observaciones`) VALUES
+(1, '[value-2]', '2022-10-12 23:13:22', '[value-4]'),
+(2, 'Luis Perez', '2022-12-11 13:30:00', ''),
+(3, 'Lucas Bustos', '2022-11-01 17:30:00', ''),
+(4, 'Luis Perez', '2022-05-05 23:22:00', ''),
+(5, 'Romina Pringles', '2023-11-15 16:30:00', ''),
+(6, 'Romina Lopez', '2023-10-11 08:10:00', '');
+
+--
+-- Indices de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  ADD PRIMARY KEY (`id`);
+--
+-- AUTO_INCREMENT de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+---
