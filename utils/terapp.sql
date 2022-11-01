@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2022 a las 01:51:12
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 01-11-2022 a las 01:19:51
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,17 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `terapp`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `especialidad`
---
-
-/* CREATE TABLE `especialidad` (
-  `id_especialidad` int(11) NOT NULL,
-  `nombre` varchar(40) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci */;
 
 -- --------------------------------------------------------
 
@@ -136,19 +125,34 @@ CREATE TABLE `profesional` (
 -- Volcado de datos para la tabla `profesional`
 --
 
-INSERT INTO `profesional` (`id_profesional`, `nombre`, `apellido`, `dni`, `telefono`, `direccion`, `email`, `titulo`, `es_prestador`, `obra_social`, `institucion_educativa`, `esta_matriculado`, `matricula`, `contraseña`, `repetir_contraseña`) VALUES
-(1, 'Nora', 'Barria', 36661499, 1126332484, 'Miguel de Salcedo 1234', 'norabarria1@gmail.com', 'Técnico Superior de Análisis de Sistemas', 'Si', 'smg', 'UBA', 'Si', '133326', '12345', '12345'),
-(2, 'Ramon', 'Perez', 24561230, 2147483647, '25 de Mayo 361', 'ramon1@gmail.com', 'Psicólogo', 'No', '-', 'UAI', 'Si', '6325', 'ramon', 'ramon');
+INSERT INTO `profesional` (`id_profesional`, `nombre`, `apellido`, `dni`, `telefono`, `direccion`, `email`, `titulo`, `institucion_educativa`, `es_prestador`, `obra_social`, `esta_matriculado`, `matricula`, `contraseña`, `repetir_contraseña`) VALUES
+(1, 'Nora', 'Barria', 36661499, 1126332484, 'Miguel de Salcedo 1234', 'norabarria1@gmail.com', 'Técnico Superior de Análisis de Sistemas', 'UBA', 'Si', 'smg', 'Si', '133326', '12345', '12345'),
+(2, 'Ramon', 'Perez', 24561230, 2147483647, '25 de Mayo 361', 'ramon1@gmail.com', 'Psicólogo', 'UAI', 'No', '-', 'Si', '6325', 'ramon', 'ramon');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sala_espera`
+--
+
+CREATE TABLE `sala_espera` (
+  `id` int(11) NOT NULL,
+  `en_espera` int(11) NOT NULL,
+  `atendidos` int(11) NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sala_espera`
+--
+
+INSERT INTO `sala_espera` (`id`, `en_espera`, `atendidos`, `fecha`) VALUES
+(1, 2, 0, '2022-10-31'),
+(2, 2, 0, '2022-10-31');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `especialidad`
---
-/*ALTER TABLE `especialidad`
-  ADD PRIMARY KEY (`id_especialidad`)*/;
 
 --
 -- Indices de la tabla `paciente`
@@ -163,14 +167,14 @@ ALTER TABLE `profesional`
   ADD PRIMARY KEY (`id_profesional`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `sala_espera`
 --
+ALTER TABLE `sala_espera`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de la tabla `especialidad`
+-- AUTO_INCREMENT de las tablas volcadas
 --
-/*ALTER TABLE `especialidad`
-  MODIFY `id_especialidad` int(11) NOT NULL AUTO_INCREMENT*/;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
@@ -183,9 +187,14 @@ ALTER TABLE `paciente`
 --
 ALTER TABLE `profesional`
   MODIFY `id_profesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `sala_espera`
+--
+ALTER TABLE `sala_espera`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
