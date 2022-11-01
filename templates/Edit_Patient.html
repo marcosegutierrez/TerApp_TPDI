@@ -16,8 +16,15 @@
             <label for="tutor">Tutor:</label>
             <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" value="{{ patient.4}}" class="form-control">
 
+
             <label for="obra_social">Obra Social:</label>
-            <select name="obra_social" value="{{ patient.5}}" class="form-control" required>
+            <input name="obra_social" value="{{ patient.5}}" class="form-control" required/>
+
+                <!--este Listado no es funcional sobre la vista PACIENTES (registro y edición)
+                No se coincide el tipo de dato en la tabla pacientes con el tipo de dato de la lista.
+                Se espera lograr conexion entre Tabla Pacientes y Obra Social. Mientras tanto se reserva esta porción de código en el caso que sea necesario implementa PLAN B para esta funcionalidad
+            <label for="obra_social">Obra Social:</label>
+            <select name="obra_social" value="{{ patient.5}}" class="form-control" required/>
                 <option disabled="">Seleccione una opción...</option>
                 <option value="N/A">No aplica / paciente particular</option>
                 <option value="Galeno">Galeno</option>
@@ -30,7 +37,8 @@
                 <option value="Elevar">Elevar</option>
                 <option value="Medicus">Medicus</option>
             </select>
-            
+                 -->
+                 
             <label for="n_afiliado">N° Afiliado:</label>
             <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" value="{{ patient.6}}" class="form-control" onKeyPress="if(this.value.length==16) return false;" required/>
             <label for="dni">DNI:</label>
