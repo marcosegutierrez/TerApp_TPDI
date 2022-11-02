@@ -26,17 +26,17 @@
                     <label for="apellido">Apellido:</label>
                     <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                     <label for="edad">Edad:</label>
-                    <input type="number" name="edad" class="form-control" required/>
+                    <input type="number" min="18" max="99" name="edad" class="form-control" required/>
                     <label for="tutor">Tutor:</label>
                     <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" class="form-control">
                     <label for="obra_social">Obra Social:</label>
-                    <input type="text" name="obra_social" class="form-control" required/>
+                    <input type="text" name="obra_social" class="form-control" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  required/>
                     <label for="n_afiliado">Número de afiliado</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" class="form-control" onKeyPress="if(this.value.length==16) return false;" required/>
                     <label for="dni">DNI:</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" placeholder="Sin puntos o comas" class="form-control" onKeyPress="if(this.value.length==8) return false;" required/>
                     <label for="email">Email:</label>
-                    <input type="text" name="email" class="form-control" required/>
+                    <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" class="form-control" required/>
                     <label for="telefono">Télefono principal:</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir característica" class="form-control" onKeyPress="if(this.value.length==15) return false;" required/>
                     <label for="domicilio">Domicilio / Barrio / Localidad:</label>
