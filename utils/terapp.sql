@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2022 a las 01:19:51
+-- Tiempo de generación: 10-11-2022 a las 23:37:07
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `terapp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `agenda`
+--
+
+CREATE TABLE `agenda` (
+  `id` int(11) NOT NULL,
+  `nombre_apellido` varchar(40) NOT NULL,
+  `fecha_hora` datetime NOT NULL,
+  `observaciones` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `agenda`
+--
+
+INSERT INTO `agenda` (`id`, `nombre_apellido`, `fecha_hora`, `observaciones`) VALUES
+(1, '[value-2]', '2022-10-12 23:13:22', '[value-4]'),
+(2, 'Luis Perez', '2022-12-11 13:30:00', ''),
+(3, 'Lucas Bustos', '2022-11-01 17:30:00', ''),
+(4, 'Luis Perez', '2022-05-05 23:22:00', ''),
+(5, 'Romina Pringles', '2023-11-15 16:30:00', ''),
+(6, 'Romina Lopez', '2023-10-11 08:10:00', ''),
+(7, 'Marcos Perez', '2023-12-10 12:00:00', 'No reprogramar'),
+(8, 'Francisco ', '2022-12-10 13:00:00', ''),
+(9, 'Nora', '2022-12-10 21:30:00', '');
 
 -- --------------------------------------------------------
 
@@ -61,7 +89,7 @@ CREATE TABLE `paciente` (
   `apellido` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `edad` int(11) NOT NULL,
   `tutor` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `obra_social` varchar(254) NOT NULL,
+  `obra_social` int(10) NOT NULL,
   `n_afiliado` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -126,7 +154,7 @@ CREATE TABLE `profesional` (
 --
 
 INSERT INTO `profesional` (`id_profesional`, `nombre`, `apellido`, `dni`, `telefono`, `direccion`, `email`, `titulo`, `institucion_educativa`, `es_prestador`, `obra_social`, `esta_matriculado`, `matricula`, `contraseña`, `repetir_contraseña`) VALUES
-(1, 'Nora', 'Barria', 36661499, 1126332484, 'Miguel de Salcedo 1234', 'norabarria1@gmail.com', 'Técnico Superior de Análisis de Sistemas', 'UBA', 'Si', 'smg', 'Si', '133326', '12345', '12345'),
+(1, 'Nora', 'Barria', 36661499, 1126332484, 'Miguel de Salcedo 1234', 'norabarria1@gmail.com', 'Técnico Superior de Análisis de Sistemas', 'UBA', 'Si', 'Elevar', 'Si', '133326', '12345', '12345'),
 (2, 'Ramon', 'Perez', 24561230, 2147483647, '25 de Mayo 361', 'ramon1@gmail.com', 'Psicólogo', 'UAI', 'No', '-', 'Si', '6325', 'ramon', 'ramon');
 
 -- --------------------------------------------------------
@@ -147,12 +175,17 @@ CREATE TABLE `sala_espera` (
 --
 
 INSERT INTO `sala_espera` (`id`, `en_espera`, `atendidos`, `fecha`) VALUES
-(1, 2, 0, '2022-10-31'),
-(2, 2, 0, '2022-10-31');
+(1, 4, 0, '2022-10-31');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `paciente`
@@ -177,6 +210,12 @@ ALTER TABLE `sala_espera`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
@@ -198,41 +237,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
--- 1/11/2022 Se crea tabla AGENDA
---
--- Estructura de tabla para la tabla `agenda`
---
-
-CREATE TABLE `agenda` (
-  `id` int(11) NOT NULL,
-  `nombre_apellido` varchar(40) NOT NULL,
-  `fecha_hora` datetime NOT NULL,
-  `observaciones` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `agenda`
---
-
-INSERT INTO `agenda` (`id`, `nombre_apellido`, `fecha_hora`, `observaciones`) VALUES
-(1, '[value-2]', '2022-10-12 23:13:22', '[value-4]'),
-(2, 'Luis Perez', '2022-12-11 13:30:00', ''),
-(3, 'Lucas Bustos', '2022-11-01 17:30:00', ''),
-(4, 'Luis Perez', '2022-05-05 23:22:00', ''),
-(5, 'Romina Pringles', '2023-11-15 16:30:00', ''),
-(6, 'Romina Lopez', '2023-10-11 08:10:00', '');
-
---
--- Indices de la tabla `agenda`
---
-ALTER TABLE `agenda`
-  ADD PRIMARY KEY (`id`);
---
--- AUTO_INCREMENT de la tabla `agenda`
---
-ALTER TABLE `agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-COMMIT;
-
----
