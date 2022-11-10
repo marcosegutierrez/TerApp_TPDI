@@ -22,12 +22,21 @@ global profesional_global
 
 @app.route('/beginning')
 def Beginning():
-    return render_template('Beginning.html')
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM sala_espera')
+    data = cur.fetchall()
+    print(data)
+    return render_template('Beginning.html', en_espera=data)
 
 # -En caso de querer comenzar con localhost:3000 
 @app.route('/')
 def New_Patient():
-    return render_template('Beginning.html')
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM sala_espera')
+    data = cur.fetchall()
+    print(data)
+    return render_template('Beginning.html', en_espera=data)
+
 
 # ------------------------LOGIN------------------------------
 
@@ -446,9 +455,25 @@ def waiting_update():
             UPDATE sala_espera
             SET en_espera = %s
             WHERE id = 1
-        ''', espera2)
+        ''', [espera2])
         mysql.connection.commit()
         return redirect(url_for('waiting'))
+
+@app.route('/waitingUpdate2', methods=['POST'])
+def waiting_update2():
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT * FROM sala_espera')
+        data = cur.fetchall()
+        espera = int(data[0][1])+1
+        espera2 = str(espera)
+        cur.execute('''
+            UPDATE sala_espera
+            SET en_espera = %s
+            WHERE id = 1
+        ''', [espera2])
+        mysql.connection.commit()
+        return redirect(url_for('Beginning'))
 
 
 # ------------------------DEBUG---------------------------------

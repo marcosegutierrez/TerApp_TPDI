@@ -22,16 +22,6 @@
   {% endif %}
   {% endwith %}
 
-  <div class="card card-body text-center wait-r">
-    <div>
-      <h1>Sala de espera</h1>
-    </div>
-    <section>
-      <button id="plusClick">Anotarme</button>
-      <p id="waiting"></p>
-    </section>
-  </div>
-
   <form action="/waitingUpdate" method="POST">
     <div class="card card-body text-center wait-r">
       <div>
@@ -45,7 +35,5 @@
       </section>
     </div>
   </form>
-
-  <script src="/static/js/wait.js"></script>
 
   {% endblock %}

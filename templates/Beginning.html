@@ -38,20 +38,23 @@
     </div>
   </div>
 
-  <div class="card card-body text-center wait-r">
-    <div>
-      <h1>Sala de espera</h1>
+  <form action="/waitingUpdate2" method="POST">
+    <div class="card card-body text-center wait-r">
+      <div>
+        <h1>Sala de espera 2</h1>
+      </div>
+      <section>
+        <button id="plusClick">Anotarme</button>
+        {% for en_espera in en_espera %}
+        <p id="waiting" name="waiting">{{ en_espera.1 }}</p>
+        {% endfor %}
+      </section>
     </div>
-    <section>
-      <button id="plusClick">Anotarme</button>
-      <button id="minClick">Atendido</button><!-- Solo profesional -->
-      <button id="btnClear">Resetear</button><!-- Solo profesional -->
-      <p id="waiting"></p>
-    </section>
-  </div>
+  </form>
+
+
 </div>
 
-<script src="/static/js/wait.js"></script>
 
 </html>
 
