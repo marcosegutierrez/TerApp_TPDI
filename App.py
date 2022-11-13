@@ -442,38 +442,66 @@ def waiting():
     print(data)
     return render_template('Wait.html', en_espera=data)
 
-@app.route('/waitingUpdate', methods=['POST'])
+@app.route('/waitingUpdate')
 def waiting_update():
-    if request.method == 'POST':
-        cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM sala_espera')
-        data = cur.fetchall()
-        espera = int(data[0][1])+1
-        # espera = int(value)+1
-        espera2 = str(espera)
-        cur.execute('''
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM sala_espera')
+    data = cur.fetchall()
+    espera = int(data[0][1])+1
+    espera2 = str(espera)
+    cur.execute('''
             UPDATE sala_espera
             SET en_espera = %s
             WHERE id = 1
         ''', [espera2])
-        mysql.connection.commit()
-        return redirect(url_for('waiting'))
+    mysql.connection.commit()
+    return redirect(url_for('waiting'))
 
-@app.route('/waitingUpdate2', methods=['POST'])
+@app.route('/waitingUpdate2')
 def waiting_update2():
-    if request.method == 'POST':
-        cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM sala_espera')
-        data = cur.fetchall()
-        espera = int(data[0][1])+1
-        espera2 = str(espera)
-        cur.execute('''
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM sala_espera')
+    data = cur.fetchall()
+    espera = int(data[0][1])+1
+    espera2 = str(espera)
+    cur.execute('''
             UPDATE sala_espera
             SET en_espera = %s
             WHERE id = 1
         ''', [espera2])
-        mysql.connection.commit()
-        return redirect(url_for('Beginning'))
+    mysql.connection.commit()
+    return redirect(url_for('Beginning'))
+
+
+@app.route('/waitingDelete')
+def waiting_delete():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM sala_espera')
+    data = cur.fetchall()
+    espera = int(data[0][1])-1
+    espera2 = str(espera)
+    cur.execute('''
+                UPDATE sala_espera
+                SET en_espera = %s
+                WHERE id = 1
+            ''', [espera2])
+    mysql.connection.commit()
+    return redirect(url_for('Beginning'))
+
+@app.route('/waitingReset')
+def waiting_reset():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM sala_espera')
+    data = cur.fetchall()
+    espera = 0
+    espera2 = str(espera)
+    cur.execute('''
+                UPDATE sala_espera
+                SET en_espera = %s
+                WHERE id = 1
+            ''', [espera2])
+    mysql.connection.commit()
+    return redirect(url_for('Beginning'))
 
 
 # ------------------------DEBUG---------------------------------

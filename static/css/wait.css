@@ -1,5 +1,9 @@
 .wait-r {
-    margin-top:-37%;
+    margin-top: 23%;
+}
+
+.wait-r2 {
+    margin-top: -37%;
     right: -45%;
 }
 
@@ -12,7 +16,7 @@
     text-align: center;
 }
 
-.wait-r button {
+.wait-r input {
     border: none;
     background-color: green;
     padding: 10px;

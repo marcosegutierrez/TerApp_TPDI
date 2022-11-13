@@ -23,18 +23,20 @@
   {% endif %}
   {% endwith %}
 
-  <form action="/waitingUpdate" method="POST">
-    <div class="card card-body text-center wait-r">
-      <div>
-        <h1>Sala de espera</h1>
-      </div>
-      <section>
-        <button id="plusClick">Anotarme</button>
-        {% for en_espera in en_espera %}
-        <p id="waiting" name="waiting">{{ en_espera.1 }}</p>
-        {% endfor %}
-      </section>
+
+  <div class="card card-body text-center wait-r">
+    <div>
+      <h1>Sala de espera</h1>
     </div>
-  </form>
+    <section>
+      <a href="/waitingUpdate">
+        <input type="button" value="Anotar" id="plusClick">
+      </a>
+      {% for en_espera in en_espera %}
+      <p id="waiting" name="waiting">{{ en_espera.1 }}</p>
+      {% endfor %}
+    </section>
+  </div>
+
 
   {% endblock %}

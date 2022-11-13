@@ -18,9 +18,9 @@
     </button>
   </div>
 </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
+{% endfor %}
+{% endif %}
+{% endwith %}
 <div class="welcome">
   <div class="welcome card text-center">
     <h1>Bienvenido a
@@ -40,20 +40,26 @@
 </div>
 <!--Sala de Espera-->
 <div class="right">
-  <form action="/waitingUpdate2" method="POST">
-    <div class="card card-body text-center wait-r">
-      <div>
-        <h1>Sala de espera</h1>
-      </div>
-      <section>
-        <button id="plusClick">Anotarme</button>
-        {% for en_espera in en_espera %}
-        <p id="waiting" name="waiting">{{ en_espera.1 }}</p>
-        {% endfor %}
-      </section>
+  <div class="card card-body text-center wait-r2 wait-r">
+    <div>
+      <h1>Sala de espera</h1>
     </div>
-  </form>
-</div>  
+    <section>
+      <a href="/waitingUpdate2">
+        <input type="button" value="Anotar" id="plusClick">
+      </a>
+      <a href="/waitingDelete">
+        <input type="button" value="Atendido" id="minClick">
+      </a>
+      <a href="/waitingReset">
+        <input type="button" value="Resetear" id="btnClear">
+      </a>
+      {% for en_espera in en_espera %}
+      <p id="waiting" name="waiting">{{ en_espera.1 }}</p>
+      {% endfor %}
+    </section>
+  </div>
+</div>
 <!--Fin Sala-->
 
 
