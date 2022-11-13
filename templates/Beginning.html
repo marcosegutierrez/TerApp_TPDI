@@ -17,12 +17,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-
+</div>
   {% endfor %}
   {% endif %}
   {% endwith %}
-
-  <div class="card card-body text-center">
+<div class="welcome">
+  <div class="welcome card text-center">
     <h1>Bienvenido a
       <br>
       <img src="../static/img/terapplogo.png" class="log img-fluid img-responsive" alt="Responsive image">
@@ -37,7 +37,9 @@
       </a>
     </div>
   </div>
-
+</div>
+<!--Sala de Espera-->
+<div class="right">
   <form action="/waitingUpdate2" method="POST">
     <div class="card card-body text-center wait-r">
       <div>
@@ -51,9 +53,9 @@
       </section>
     </div>
   </form>
+</div>  
+<!--Fin Sala-->
 
-
-</div>
 
 
 </html>
