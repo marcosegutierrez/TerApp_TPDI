@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask.globals import request
 from flask_mysqldb import MySQL
+import wait, diary
 
 app = Flask(__name__)
 
@@ -18,7 +19,6 @@ app.secret_key = 'mysecretkey'
 global profesional_global
 
 # ------------------------INICIO------------------------------
-
 
 @app.route('/beginning')
 def Beginning():
@@ -40,7 +40,6 @@ def New_Patient():
 
 # ------------------------LOGIN------------------------------
 
-
 @app.route('/login')
 def Login():
     if session.get('logueado'):
@@ -51,7 +50,6 @@ def Login():
         
     # ------------------------------LOGIN Verificación de datos--------------------------------------
 
-
 @app.route('/login', methods=['POST'])
 def do_admin_login():
   login = request.form
@@ -59,9 +57,9 @@ def do_admin_login():
   email = login['email']
   password = login['password']
 
-  if email is '' or password is '':
+  if email == '' or password == '':
         flash("Completar campos! vuelve a intentarlo")
-        return Login();
+        return Login()
 
   cur = mysql.connection.cursor()
   cur.execute('SELECT * FROM profesional WHERE email = %s or contraseña = %s', [email,password])
@@ -73,7 +71,7 @@ def do_admin_login():
         return Login();
 
   password_db = profesional[13] #indice de la contraseña
-  session['profesional_actual'] = profesional;
+  session['profesional_actual'] = profesional
   session['logueado'] = (password == password_db)
   
   return Login()
@@ -86,6 +84,7 @@ def logout():
 
 
 # ------------------------------PROFESIONAL--------------------------------------
+
 @app.route('/professional')
 def My_Profile():
     cur = mysql.connection.cursor()
@@ -182,6 +181,7 @@ def delete_professional():
 
 
 # ------------------------------PACIENTE------------------------------
+
 @app.route('/patient')
 def Patient_List():
     cur = mysql.connection.cursor()
@@ -306,6 +306,7 @@ def Patient_List_Filtered():
     
     return render_template('Patient_List.html', paciente=data, currentvalue = currentvalue)
 
+
 # ----------------------Agenda--------------
 
 @app.route('/agenda')
@@ -420,7 +421,6 @@ def calendar():
    return render_template('calendar.html',
    events = events)
 
-   
 
 # ------------------------CONTACTO---------------------------------
 
@@ -435,77 +435,32 @@ def contact():
 # -------------------PACIENTES EN ESPERA--------------------
 
 @app.route('/waiting')
-def waiting():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    print(data)
+def waiting(): 
+    data = wait.waiting(mysql)
     return render_template('Wait.html', en_espera=data)
 
 @app.route('/waitingUpdate')
 def waiting_update():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    espera = int(data[0][1])+1
-    espera2 = str(espera)
-    cur.execute('''
-            UPDATE sala_espera
-            SET en_espera = %s
-            WHERE id = 1
-        ''', [espera2])
-    mysql.connection.commit()
+    wait.waiting_update(mysql)
     return redirect(url_for('waiting'))
 
 @app.route('/waitingUpdate2')
 def waiting_update2():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    espera = int(data[0][1])+1
-    espera2 = str(espera)
-    cur.execute('''
-            UPDATE sala_espera
-            SET en_espera = %s
-            WHERE id = 1
-        ''', [espera2])
-    mysql.connection.commit()
+    wait.waiting_update2(mysql)
     return redirect(url_for('Beginning'))
-
 
 @app.route('/waitingDelete')
 def waiting_delete():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    espera = int(data[0][1])-1
-    espera2 = str(espera)
-    cur.execute('''
-                UPDATE sala_espera
-                SET en_espera = %s
-                WHERE id = 1
-            ''', [espera2])
-    mysql.connection.commit()
+    wait.waiting_delete(mysql)
     return redirect(url_for('Beginning'))
 
 @app.route('/waitingReset')
 def waiting_reset():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    espera = 0
-    espera2 = str(espera)
-    cur.execute('''
-                UPDATE sala_espera
-                SET en_espera = %s
-                WHERE id = 1
-            ''', [espera2])
-    mysql.connection.commit()
+    wait.waiting_reset(mysql)
     return redirect(url_for('Beginning'))
 
 
 # ------------------------DEBUG---------------------------------
-
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
