@@ -15,8 +15,20 @@
             <input type="number" min="18" max="99" name="edad" value="{{ patient.3}}" class="form-control" required/>
             <label for="tutor">Tutor:</label>
             <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" value="{{ patient.4}}" class="form-control">
-            <label for="obra_social">Obra Social:</label>
-            <input type="text" name="obra_social" value="{{ patient.5}}" class="form-control" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  required/>
+            <label for="obra_social">Indique la obra social:</label>
+            <select name="obra_social" class="seleccion form-control" required>
+                <option disabled="">Seleccione una opción...</option>
+                <option value="N/A">No aplica / paciente particular</option>
+                <option value="Galeno">Galeno</option>
+                <option value="Medicus">Medicus</option>
+                <option value ="Osseg">Osseg</option>
+                <option value="Opdea">Opdea</option>
+                <option value="Hominis">Hominis</option>
+                <option value="Osdipp">Osdipp</option>
+                <option value="Ospic">Ospic</option>
+                <option value="Elevar">Elevar</option>
+                <option value="Medicus">Medicus</option>
+            </select>            
 
                 <!--este Listado no es funcional sobre la vista PACIENTES (registro y edición)
                 No se coincide el tipo de dato en la tabla pacientes con el tipo de dato de la lista.
