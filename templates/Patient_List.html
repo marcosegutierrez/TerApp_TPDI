@@ -29,8 +29,20 @@
                      <input type="number" min="18" max="99" name="edad" class="form-control" required/>
                     <label for="tutor">Tutor:</label>
                     <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" class="form-control">
-                     <label for="obra_social">Obra Social:</label>
-                    <input type="text" name="obra_social" class="form-control" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"  required/>
+                    <label for="obra_social">Indique la obra social:</label>
+                    <select name="obra_social" class="seleccion form-control" required>
+                        <option disabled="">Seleccione una opción...</option>
+                        <option value="N/A">No aplica / paciente particular</option>
+                        <option value="Galeno">Galeno</option>
+                        <option value="Medicus">Medicus</option>
+                        <option value ="Osseg">Osseg</option>
+                        <option value="Opdea">Opdea</option>
+                        <option value="Hominis">Hominis</option>
+                        <option value="Osdipp">Osdipp</option>
+                        <option value="Ospic">Ospic</option>
+                        <option value="Elevar">Elevar</option>
+                        <option value="Medicus">Medicus</option>
+                    </select>
                     <label for="n_afiliado">Número de afiliado</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" class="form-control" onKeyPress="if(this.value.length==16) return false;" required/>
                     <label for="dni">DNI:</label>
