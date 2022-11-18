@@ -89,7 +89,7 @@ CREATE TABLE `paciente` (
   `apellido` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `edad` int(11) NOT NULL,
   `tutor` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `obra_social` varchar(255) COLLATE utf8_unicode_ci NOT NUL,
+  `obra_social` varchar(255) COLLATE utf8_unicode_ci,
   `n_afiliado` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
