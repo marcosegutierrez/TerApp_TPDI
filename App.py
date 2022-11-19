@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask.globals import request
 from flask_mysqldb import MySQL
-import wait, patient, professional
+import modules.beginning as beginning, modules.login as login
+import modules.wait as wait, modules.patient as patient, modules.professional as professional
 
 app = Flask(__name__)
 
@@ -22,21 +23,14 @@ global profesional_global
 
 @app.route('/beginning')
 def Beginning():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    print(data)
+    data = beginning.Beginning(mysql)
     return render_template('Beginning.html', en_espera=data)
 
 # -En caso de querer comenzar con localhost:3000
 
-
 @app.route('/')
 def New_Patient():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sala_espera')
-    data = cur.fetchall()
-    print(data)
+    data = beginning.Beginning(mysql)
     return render_template('Beginning.html', en_espera=data)
 
 
@@ -44,49 +38,21 @@ def New_Patient():
 
 @app.route('/login')
 def Login():
-    if session.get('logueado'):
-        return render_template('Personalized_Welcome.html')
-    else:
-
-        return render_template('Login.html')
+    template = login.Login(session)
+    return render_template(template)
 
     # ------------------------------LOGIN Verificación de datos--------------------------------------
 
-
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-    login = request.form
-
-    email = login['email']
-    password = login['password']
-
-    if email == '' or password == '':
-        flash("Completar campos! vuelve a intentarlo")
-        return Login()
-
-    cur = mysql.connection.cursor()
-    cur.execute(
-        'SELECT * FROM profesional WHERE email = %s or contraseña = %s', [email, password])
-
-    profesional = cur.fetchone()
-
-    if profesional is None:
-        flash("Ups! vuelve a intentarlo")
-        return Login()
-
-    password_db = profesional[13]  # indice de la contraseña
-    session['profesional_actual'] = profesional
-    session['logueado'] = (password == password_db)
-
-    return Login()
+    state = login.do_admin_login(request, mysql, session)
+    if state == 1: return Login()
 
 
 @app.route('/logout')
 def logout():
-    session['logueado'] = False
-    session['profesional_actual'] = None
-    return Login()
-
+    login.logout(session)
+    return(Login())
 
 # ------------------------------PROFESIONAL--------------------------------------
 
@@ -305,7 +271,7 @@ def waiting_update():
 
 @app.route('/waitingUpdate2')
 def waiting_update2():
-    wait.waiting_update2(mysql)
+    wait.waiting_update(mysql)
     return redirect(url_for('Beginning'))
 
 
