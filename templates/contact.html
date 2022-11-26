@@ -1,74 +1,40 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Formulario de contacto</title>
-    </head>
+<div class="col-md-5 pt-4 offset-md-4 ">
+  <div id="tarjeta_contacto" class="card card-body ">
+    <!-- Redirection  <form action="/professional/add_professional" method="POST">  -->  
+    <form action="" method="">
+      <h2 class="text-center">Formulario de contacto</h2>
+      <h5 class="text-sm-center">Escríbanos y en breve nos pondremos en contacto</h5>
 
-    <body id="body">  
-        
-        <div class="contact_form" id="c_contact_form">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
       
-          <div class="formulario">      
-            <h1 id="h10">Formulario de contacto</h1>
-              <h3 id="h30">Escríbanos y en breve nos pondremos en contacto</h3>
-            
-                <form action="submeter-formulario.php" method="post">       
-                        
-                      <p id="c_p">
-                        <label for="nombre" class="colocar_nombre" id="c_label">Nombre
-                          <span class="obligatorio">*</span>
-                        </label>
-                          <input type="text" name="introducir_nombre" id="c_nombre" required="obligatorio" placeholder="Escribe tu nombre">
-                      </p>
-                    
-                      <p id="c_p">
-                        <label for="email" class="colocar_email" id="c_label">Email
-                          <span class="obligatorio">*</span>
-                        </label>
-                          <input type="email" name="introducir_email" id="c_email" required="obligatorio" placeholder="Escribe tu Email">
-                      </p>
-                  
-                      <p id="c_p"> 
-                        <label for="telefone" class="colocar_telefono" id="c_label">Teléfono
-                        </label>
-                          <input type="tel" name="introducir_telefono" id="c_telefono" placeholder="Escribe tu teléfono">
-                      </p>    
-                    
-                      <p id="c_p">
-                        <label for="website" class="colocar_website" id="c_label">Sitio web
-                        </label>
-                          <input type="url" name="introducir_website" id="c_website" placeholder="Escribe la URL de tu web">
-                      </p id="c_p">    
-                    
-                      <p id="c_p">
-                        <label for="asunto" class="colocar_asunto" id="c_label">Asunto
-                          <span class="obligatorio">*</span>
-                        </label>
-                          <input type="text" name="introducir_asunto" id="c_assunto" required="obligatorio" placeholder="Escribe un asunto">
-                      </p>    
-                    
-                      <p id="c_p">
-                        <label for="mensaje" class="colocar_mensaje" id="c_label">Mensaje
-                            <span class="obligatorio">*</span>
-                        </label>                     
-                            <textarea name="introducir_mensaje" class="texto_mensaje" id="c_mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
-                    </p>                    
-                    
-                    <button type="submit" name="enviar_formulario" id="c_enviar"><z>Enviar</z></button>
-                        <p class="aviso"  id="c_p">
-                            <span class="obligatorio" id="c_span"> * </span>los campos son obligatorios.
-                        </p>          
-                        <a href="/personalized_welcome">
-                            <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 my-5 ">
-                        </a>
-                </form>
-          </div>  
-        </div>
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" class="form-control" required/>
       
-      </body>
+      <label for="telefono">Teléfono:</label>
+      <input type="number" pattern="/^-?\d+\.?\d*$/" name="telefono" placeholder="Incluir características" class="form-control " onKeyPress="if(this.value.length==15) return false;" required/>
+      
+      <label for="asunto">Asunto:</label>
+      <input type="text" name="asunto"  class="form-control" required/>
 
-</html>
+      <label for="mensaje">Mensaje:</label>
+      <textarea name="mensaje" class="form-control" required placeholder="Deja aquí tu mensaje..."></textarea>
+
+      <div class="offset-md-3">
+        <button type="submit" class="btn btn-primary btn-bg mx-4 my-5">
+            Enviar
+        </button>
+                            
+        <a href="/personalized_welcome">
+            <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 my-5 ">
+        </a>
+      </div>      
+    </form>
+  </div>
+</div>
+
+
 {% endblock %}
