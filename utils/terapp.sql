@@ -52,6 +52,29 @@ INSERT INTO `agenda` (`id`, `nombre_apellido`, `fecha_hora`, `observaciones`) VA
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contactenos`
+--
+
+CREATE TABLE `contactenos` (
+  `id` int(20) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `asunto` varchar(255) NOT NULL,
+  `mensaje` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `contactenos`
+--
+
+INSERT INTO `contactenos` (`id`, `nombre`, `email`, `telefono`, `asunto`, `mensaje`) VALUES
+(1, 'Agustina', 'agustina_hidalgo@outlook.com', '123456', 'Consulta', 'hlñfglhfgklhfgñhñlgfkhlfgñhfg'),
+(7, 'Teresa', 'teresa.test@gmail.com', '7845221', 'Consulta', 'jkfdslkjdskljdskjfmcmx fkks losdfsdkfds jsdofksdkfñlskd jlsdfdskfñsdñkf skfñskñdf');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `obra_social`
 --
 

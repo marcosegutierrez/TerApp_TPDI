@@ -3,6 +3,7 @@ from flask.globals import request
 from flask_mysqldb import MySQL
 import modules.beginning as beginning, modules.login as login
 import modules.wait as wait, modules.patient as patient, modules.professional as professional
+import modules.contact as contact
 
 app = Flask(__name__)
 
@@ -245,14 +246,19 @@ def calendar():
                            events=events)
 
 
-# ------------------------CONTACTO---------------------------------
+# ------------------------CONTACTENOS---------------------------------
 
 @app.route('/contact')
-def contact():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM profesional')
-    data = cur.fetchall()
-    return render_template('contact.html', profesional=data)  # ,paciente=data
+def contact_form():
+    return render_template('contact.html')
+
+@app.route('/contact/add_message', methods=['POST'])  #boton "ENVIAR"
+def add_message():
+    contact.add_message(mysql, request)
+    return redirect(url_for('Personalized_Welcome'))
+    #return redirect(url_for('contact'))    
+
+
 
 
 # -------------------PACIENTES EN ESPERA--------------------
