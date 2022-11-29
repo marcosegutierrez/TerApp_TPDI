@@ -20,7 +20,7 @@ def do_admin_login(request, mysql, session):
 
     cur = mysql.connection.cursor()
     cur.execute(
-        'SELECT * FROM profesional WHERE email = %s or contraseña = %s', [email, password])
+        'SELECT * FROM profesional WHERE email = %s and contraseña = %s', [email, password])
 
     profesional = cur.fetchone()
 
