@@ -139,12 +139,13 @@ def agenda():
 def add_turno():
     if request.method == 'POST':
         nombre_apellido = request.form['nombre_apellido']
-        fecha_hora = request.form['fecha_hora']
+        fecha = request.form['fecha']
+        hora = request.form['hora']
         observaciones = request.form['observaciones']
 
         cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO agenda (nombre_apellido, fecha_hora, observaciones) VALUES (%s, %s, %s)',
-                    (nombre_apellido, fecha_hora, observaciones))
+        cur.execute('INSERT INTO agenda (nombre_apellido, fecha, hora, observaciones) VALUES (%s, %s,%s, %s)',
+                    (nombre_apellido, fecha, hora, observaciones))
         mysql.connection.commit()
         flash('Turno agregado con éxito')
         return redirect(url_for('agenda'))
@@ -163,16 +164,18 @@ def get_turno(id):
 def update_turno(id):
     if request.method == 'POST':
         nombre_apellido = request.form['nombre_apellido']
-        fecha_hora = request.form['fecha_hora']
+        fecha = request.form['fecha']
+        hora = request.form['hora']
         observaciones = request.form['observaciones']
         cur = mysql.connection.cursor()
         cur.execute("""
             UPDATE agenda
             SET nombre_apellido = %s,
-                fecha_hora = %s,
+                fecha = %s,
+                hora = %s,
                 observaciones = %s
             WHERE id = %s  
-            """, (nombre_apellido, fecha_hora, observaciones, id))
+            """, (nombre_apellido, fecha, hora, observaciones, id))
         mysql.connection.commit()
         flash('Turno editado con éxito')
         return redirect(url_for('agenda'))
@@ -200,7 +203,8 @@ def agenda_Filtered():
 
     query = "SELECT * FROM agenda WHERE "
     query += "nombre_apellido LIKE '%" + busqueda + "%' OR "
-    query += "fecha_hora LIKE '%" + busqueda + "%' OR "
+    query += "fecha LIKE '%" + busqueda + "%' OR "
+    query += "hora LIKE '%" + busqueda + "%' OR "
     query += "observaciones LIKE '%" + busqueda + "%'"
 
     cur = mysql.connection.cursor()
@@ -217,7 +221,7 @@ def Personalized_Welcome():
     return render_template('Personalized_Welcome.html')
 
 
-# --- porcion de cosigo que no cumple función
+# --- porcion de código que no cumple función
 
 events = [
     {

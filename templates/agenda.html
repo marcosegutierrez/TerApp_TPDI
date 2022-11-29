@@ -23,15 +23,17 @@
                     <label for="nombre_apellido">Nombre y Apellido</label>
                     <input type="text" name="nombre_apellido" class="form-control" required/>
                     
-                    <label for="fecha_hora">Fecha y hora del turno:</label>
-                    <input type="datetime-local" name="fecha_hora" class="form-control" required/>
-                    
+                    <label for="fecha">Fecha del turno:</label>
+                    <input type="date" name="fecha" class="form-control" required/>
+
+                    <label for="hora">Hora del turno:</label>
+                    <input type="time-local" name="hora" class="form-control" required/>
                     
                     <label for="observaciones">Observaciones:</label>
                     <input type="text" name="observaciones" class="form-control">
 
                     <div class="offset-md-4">
-                        <button type="submit" class="btn btn-info btn-sm mx-4 my-5">
+                        <button type="submit" class="btn btn-info btn-sm mx-4 my-3">
                             Guardar
                             </button>
                     </div>
@@ -77,7 +79,8 @@
                     <thead>
                         <tr>
                             <td>Nombre y Apellido</td>
-                            <td>Día y horario</td>
+                            <td>Día</td>
+                            <td>Horario</td>
                             <td>Observaciones</td>
                             <td colspan="2" class="text-center">Operaciones</td>
                         </tr>
@@ -88,7 +91,7 @@
                             <td>{{ agenda.1 }}</td>
                             <td>{{ agenda.2 }}</td>
                             <td>{{ agenda.3 }}</td>
-
+                            <td>{{ agenda.4 }}</td>
                             <td>
                                 <div class="">
                                     <a href="/agenda/edit_turno/{{agenda.0}}">

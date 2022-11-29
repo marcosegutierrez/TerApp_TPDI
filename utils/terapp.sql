@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `agenda` (
   `id` int(11) NOT NULL,
   `nombre_apellido` varchar(40) NOT NULL,
-  `fecha_hora` datetime NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
   `observaciones` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -38,16 +39,12 @@ CREATE TABLE `agenda` (
 -- Volcado de datos para la tabla `agenda`
 --
 
-INSERT INTO `agenda` (`id`, `nombre_apellido`, `fecha_hora`, `observaciones`) VALUES
-(1, '[value-2]', '2022-10-12 23:13:22', '[value-4]'),
-(2, 'Luis Perez', '2022-12-11 13:30:00', ''),
-(3, 'Lucas Bustos', '2022-11-01 17:30:00', ''),
-(4, 'Luis Perez', '2022-05-05 23:22:00', ''),
-(5, 'Romina Pringles', '2023-11-15 16:30:00', ''),
-(6, 'Romina Lopez', '2023-10-11 08:10:00', ''),
-(7, 'Marcos Perez', '2023-12-10 12:00:00', 'No reprogramar'),
-(8, 'Francisco ', '2022-12-10 13:00:00', ''),
-(9, 'Nora', '2022-12-10 21:30:00', '');
+INSERT INTO `agenda` (`id`, `nombre_apellido`, `fecha`, `hora`, `observaciones`) VALUES
+(2, 'Luis Perez', '2022-12-11', '00:00:00', ''),
+(3, 'Lucas Bustos', '2022-11-01', '00:00:00', ''),
+(4, 'Luis Perez', '2022-05-05', '00:00:00', ''),
+(5, 'Romina Pringles', '2023-11-15', '00:00:00', ''),
+(6, 'Romina Lopez', '2023-10-11', '00:00:00', '');
 
 -- --------------------------------------------------------
 
