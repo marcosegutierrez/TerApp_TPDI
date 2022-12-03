@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 from flask.globals import request
 from flask_mysqldb import MySQL
 import modules.beginning as beginning, modules.login as login
-import modules.wait as wait, modules.patient as patient, modules.professional as professional
+import modules.wait as wait, modules.patient as patient, modules.professional as professional, modules.professional1 as professional1
 import modules.contact as contact
 
 app = Flask(__name__)
