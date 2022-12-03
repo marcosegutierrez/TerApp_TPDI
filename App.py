@@ -124,6 +124,22 @@ def Patient_List_Filtered():
     [data, currentvalue] = patient.Patient_List_Filtered(mysql, request)
     return render_template('Patient_List.html', paciente=data, currentvalue=currentvalue)
 
+# ------------------------------OBRA SOCIAL--------------------------------------
+
+@app.route('/professional')
+def My_Profile1():
+    data1 = professional1.My_Profile(mysql)
+    return render_template('My_Profile.html', profesional1= data1)
+
+
+
+     # ---------- Editar perfil profesional -> obra social----------------
+
+@app.route('/edit_obra_social')
+def get_obra_social():
+    data1 = professional1.get_obra_social(session, mysql)
+    return render_template('Edit_Professional.html', professional1 = data1[0])
+
 
 # ----------------------Agenda--------------
 
