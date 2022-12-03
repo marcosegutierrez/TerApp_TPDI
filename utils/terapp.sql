@@ -80,8 +80,7 @@ INSERT INTO `contactenos` (`id`, `nombre`, `email`, `telefono`, `asunto`, `mensa
 
 CREATE TABLE `obra_social` (
   `id_obra_social` int(10) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `activo` int(3) NOT NULL
+  `nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -89,16 +88,16 @@ CREATE TABLE `obra_social` (
 --
 
 INSERT INTO `obra_social` (`id_obra_social`, `nombre`, `activo`) VALUES
-(1, 'Galeno', 1),
-(2, 'Medicus', 1),
-(3, 'Osseg', 1),
-(4, 'Opdea', 1),
-(5, 'Sadiac', 1),
-(6, 'Hominis', 1),
-(7, 'Osdipp', 1),
-(8, 'Ospic', 1),
-(9, 'Elevar', 1),
-(10, 'Medicus', 1);
+(1, 'Galeno'),
+(2, 'Medicus'),
+(3, 'Osseg'),
+(4, 'Opdea'),
+(5, 'Sadiac'),
+(6, 'Hominis'),
+(7, 'Osdipp'),
+(8, 'Ospic'),
+(9, 'Elevar'),
+(10, 'Medicus');
 
 -- --------------------------------------------------------
 
