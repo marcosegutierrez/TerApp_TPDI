@@ -87,7 +87,7 @@ CREATE TABLE `obra_social` (
 -- Volcado de datos para la tabla `obra_social`
 --
 
-INSERT INTO `obra_social` (`id_obra_social`, `nombre`, `activo`) VALUES
+INSERT INTO `obra_social` (`id_obra_social`, `nombre`) VALUES
 (1, 'Galeno'),
 (2, 'Medicus'),
 (3, 'Osseg'),
