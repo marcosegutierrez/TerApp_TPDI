@@ -3,17 +3,7 @@
 {% block body %}
 
 <div class="pt-4 ">
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-        </button>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+    
     <div class="row">
         <div class="col-md-5">
             <div id="tarjeta_paciente" class="card card-body ">
@@ -26,22 +16,16 @@
                     <label for="apellido">Apellido:</label>
                     <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                     <label for="edad">Edad:</label>
-                     <input type="number" min="18" max="99" name="edad" class="form-control" required/>
+                     <input type="number" min="0" max="99" name="edad" class="form-control" required/>
                     <label for="tutor">Tutor:</label>
                     <input type="text" name="tutor" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" placeholder="Nombre completo" class="form-control">
                     <label for="obra_social">Indique la obra social:</label>
-                    <select name="obra_social" class="seleccion form-control" required>
-                        <option disabled="">Seleccione una opción...</option>
-                        <option value="N/A">No aplica / paciente particular</option>
-                        <option value="Galeno">Galeno</option>
-                        <option value ="Osseg">Osseg</option>
-                        <option value="Opdea">Opdea</option>
-                        <option value="Hominis">Hominis</option>
-                        <option value="Osdipp">Osdipp</option>
-                        <option value="Ospic">Ospic</option>
-                        <option value="Elevar">Elevar</option>
-                        <option value="Medicus">Medicus</option>
-                    </select>
+                        <select name="obra_social" class="seleccion form-control" required>
+                            <option disabled="">Seleccione una opción...</option>
+                            {% for obra_social in obras_sociales %}
+                            <option value="{{ obra_social.0 }}">{{ obra_social.1 }}</option>    
+                            {% endfor %}
+                        </select>
                     <label for="n_afiliado">Número de afiliado</label>
                     <input type="number" pattern="/^-?\d+\.?\d*$/" name="n_afiliado" class="form-control" onKeyPress="if(this.value.length==16) return false;" required/>
                     <label for="dni">DNI:</label>
@@ -72,6 +56,17 @@
 
         <div class="col-md-7">
             <div id="tarjeta_paciente" class="card card-body  ">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                        </button>
+                    </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
                 <h2 class="text-center">Listado de Pacientes</h2>
 <!-- BUSCADOR -->
 

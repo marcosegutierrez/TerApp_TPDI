@@ -101,7 +101,10 @@ def delete_professional():
 @app.route('/patient')
 def Patient_List():
     data = patient.Patient_List(mysql)
-    return render_template('Patient_List.html', paciente=data)
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM obra_social')
+    obras_sociales = cur.fetchall()
+    return render_template('Patient_List.html', paciente=data, obras_sociales=obras_sociales)
 
 @app.route('/patient/add_patient', methods=['POST'])  # el botón guardar
 def add_patient():
@@ -111,7 +114,10 @@ def add_patient():
 @app.route('/patient/edit_patient/<id>')
 def get_patient(id):
     data = patient.get_patient(mysql, id)
-    return render_template('Edit_Patient.html', patient=data[0])
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM obra_social')
+    obras_sociales = cur.fetchall()
+    return render_template('Edit_Patient.html', patient=data[0],obras_sociales=obras_sociales)
 
 @app.route('/update/<id>', methods=['POST'])
 def update_patient(id):

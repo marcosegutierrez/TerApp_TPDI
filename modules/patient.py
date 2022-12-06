@@ -24,7 +24,7 @@ def add_patient(mysql, request):
         observaciones = request.form['observaciones']
 
         cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO paciente (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+        cur.execute('INSERT INTO paciente (nombre, apellido, edad, tutor, id_obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (nombre, apellido, edad, tutor, obra_social, n_afiliado, dni, email, telefono, domicilio, diagnostico, fecha_de_nacimiento, fecha_de_ingreso, observaciones))
         mysql.connection.commit()
         flash('Paciente agregado con éxito')
@@ -59,7 +59,7 @@ def update_patient(mysql, id, request):
                 apellido = %s,
                 edad = %s,
                 tutor = %s,
-                obra_social = %s,
+                id_obra_social = %s,
                 n_afiliado = %s,
                 dni = %s,
                 email = %s,
@@ -96,7 +96,7 @@ def Patient_List_Filtered(mysql, request):
     query += "apellido LIKE '%" + busqueda + "%' OR "
     query += "edad LIKE '%" + busqueda + "%' OR "
     query += "tutor LIKE '%" + busqueda + "%' OR "
-    query += "obra_social LIKE '%" + busqueda + "%' OR "
+    query += "id_obra_social LIKE '%" + busqueda + "%' OR "
     query += "n_afiliado LIKE '%" + busqueda + "%' OR "
     query += "dni LIKE '%" + busqueda + "%' OR "
     query += "email LIKE '%" + busqueda + "%' OR "
