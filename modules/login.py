@@ -38,3 +38,4 @@ def do_admin_login(request, mysql, session):
 def logout(session):
     session['logueado'] = False
     session['profesional_actual'] = None
+    return Login()

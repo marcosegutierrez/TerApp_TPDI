@@ -2,6 +2,16 @@
 
 {% block body %}
 <div class="col-md-5 pt-4 offset-md-4">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
     <div class="card card-body text-center">
 
         <form action="/personalized_welcome" method="POST">
@@ -21,7 +31,7 @@
                 <input type="button" class="btn btn-primary btn-bg mx-4" value="Agenda">
             </a>
         </form>
-        <a href="/logout">
+        <a href="/beginning">
             <input type="button" class="btn btn-primary-spacing btn-bg mx-4" value="Cerrar Sesión">
         </a>
     </div>

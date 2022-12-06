@@ -38,16 +38,9 @@
                 <label for="obra_social">Indique la obra social:</label>
                 <select name="obra_social" class="seleccion form-control" required>
                     <option disabled="">Seleccione una opción...</option>
-                    <option value="N/A">No aplica / paciente particular</option>
-                    <option value="Galeno">Galeno</option>
-                    <option value="Medicus">Medicus</option>
-                    <option value ="Osseg">Osseg</option>
-                    <option value="Opdea">Opdea</option>
-                    <option value="Hominis">Hominis</option>
-                    <option value="Osdipp">Osdipp</option>
-                    <option value="Ospic">Ospic</option>
-                    <option value="Elevar">Elevar</option>
-                    <option value="Medicus">Medicus</option>
+                    {% for obra_social in obras_sociales %}
+                        <option value="{{ obra_social.0 }}">{{ obra_social.1 }}</option>    
+                    {% endfor %}
                 </select>
 
                 <!--<label for="obra_social">Indique la obra social:</label>
@@ -70,7 +63,7 @@
                        Guardar
                     </button>
                                         
-                    <a href="/personalized_welcome">
+                    <a href="/beginning">
                         <input type="button" value="Volver" class="btn btn-primary btn-bg mx-4 my-5 ">
                     </a>
                  </div>      

@@ -60,12 +60,16 @@ def logout():
 @app.route('/professional')
 def My_Profile():
     data = professional.My_Profile(mysql)
-    return render_template('My_Profile.html', profesional=data)
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM obra_social')
+    obras_sociales = cur.fetchall()
+    return render_template('My_Profile.html', profesional=data, obras_sociales=obras_sociales)
 
 
 @app.route('/professional/add_professional', methods=['POST'])
 def add_professional():
     professional.add_professional(request, mysql)
+    flash('Registro exitoso! Ingresa con tus credenciales')
     return redirect(url_for('Login'))
 
      # ---------- Editar perfil profesional----------------
@@ -73,11 +77,15 @@ def add_professional():
 @app.route('/edit_professional')
 def get_profesional():
     data = professional.get_profesional(session, mysql)
-    return render_template('Edit_Professional.html', professional=data[0])
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM obra_social')
+    obras_sociales = cur.fetchall()
+    return render_template('Edit_Professional.html', professional=data[0], obras_sociales=obras_sociales)
 
 @app.route('/update_professional/<id>', methods=['POST'])
 def update_professional(id):
     professional.update_professional(id, request, mysql)
+    flash('Perfil editado con éxito')
     return redirect(url_for('Personalized_Welcome'))
 
  # ---- Solo disponible para un perfil administrador ----
@@ -123,22 +131,6 @@ def Patient_List_Filtered():
         return Patient_List()
     [data, currentvalue] = patient.Patient_List_Filtered(mysql, request)
     return render_template('Patient_List.html', paciente=data, currentvalue=currentvalue)
-
-# ------------------------------OBRA SOCIAL--------------------------------------
-
-@app.route('/professional')
-def My_Profile1():
-    data1 = professional1.My_Profile(mysql)
-    return render_template('My_Profile.html', profesional1= data1)
-
-
-
-     # ---------- Editar perfil profesional -> obra social----------------
-
-@app.route('/edit_obra_social')
-def get_obra_social():
-    data1 = professional1.get_obra_social(session, mysql)
-    return render_template('Edit_Professional.html', professional1 = data1[0])
 
 
 # ----------------------Agenda--------------
@@ -237,36 +229,7 @@ def Personalized_Welcome():
     return render_template('Personalized_Welcome.html')
 
 
-# --- porcion de código que no cumple función
-
-events = [
-    {
-        'todo': 'Xiaomi',
-        'date': '2022-06-07',
-    },
-    {
-        'todo': 'Nora',
-        'date': '2022-06-07',
-    },
-    {
-        'todo': 'Marcos',
-        'date': '2022-06-07',
-    },
-    {
-        'todo': 'Gonzalo',
-        'date': '2022-06-09',
-    },
-
-]
-
-
-@app.route('/calendar')
-def calendar():
-    return render_template('calendar.html',
-                           events=events)
-
-
-# ------------------------CONTACTENOS---------------------------------
+# ------------------------CONTACTENOS: Soporte técnico---------------------------------
 
 @app.route('/contact')
 def contact_form():
@@ -277,8 +240,6 @@ def add_message():
     contact.add_message(mysql, request)
     return redirect(url_for('Personalized_Welcome'))
     #return redirect(url_for('contact'))    
-
-
 
 
 # -------------------PACIENTES EN ESPERA--------------------

@@ -41,20 +41,14 @@
                 <label for="obra_social">Indique la obra social:</label>
                 <select name="obra_social" value="{{ professional.10}}" class="seleccion form-control" required/>
                     <option disabled="">Seleccione una opción...</option>
-                    <option value="N/A">No aplica / paciente particular</option>
-                    <option value="Galeno">Galeno</option>
-                    <option value ="Osseg">Osseg</option>
-                    <option value="Opdea">Opdea</option>
-                    <option value="Hominis">Hominis</option>
-                    <option value="Osdipp">Osdipp</option>
-                    <option value="Ospic">Ospic</option>
-                    <option value="Elevar">Elevar</option>
-                    <option value="Medicus">Medicus</option>
+                    {% for obra_social in obras_sociales %}
+                        <option value="{{ obra_social.0 }}">{{ obra_social.1 }}</option>    
+                    {% endfor %}
                 </select>
                 <!--<label for="obra_social">Indique la obra social:</label>
                 <input type="text" name="obra_social" value="{{ professional.10}}" class="form-control ">-->
                
-                <label for="esta_matriculado">Matrícula:</label><br>
+                <label for="esta_matriculado">Posee matrícula:</label><br>
                 <input type="text" name="esta_matriculado" value="{{ professional.11}}" class="form-control" required/>
                               
                 <!---->

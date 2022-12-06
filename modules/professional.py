@@ -24,10 +24,9 @@ def add_professional(request, mysql):
         repetir_contraseña = request.form['repetir_contraseña']
 
         cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO profesional (nombre, apellido, dni, telefono, direccion, email, titulo, institucion_educativa, es_prestador, obra_social, esta_matriculado, matricula, contraseña, repetir_contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+        cur.execute('INSERT INTO profesional (nombre, apellido, dni, telefono, direccion, email, titulo, institucion_educativa, es_prestador, id_obra_social, esta_matriculado, matricula, contraseña, repetir_contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
                     (nombre, apellido, dni, telefono, direccion, email, titulo, institucion_educativa, es_prestador, obra_social, esta_matriculado, matricula, contraseña, repetir_contraseña))
         mysql.connection.commit()
-        flash('Registro exitoso! Ingresa con tus credenciales')
 
 def get_profesional(session, mysql):
     profesional_actual = session['profesional_actual']
@@ -68,7 +67,7 @@ def update_professional(id, request, mysql):
                 titulo = %s,
                 institucion_educativa = %s,
                 es_prestador = %s,
-                obra_social = %s,
+                id_obra_social = %s,
                 esta_matriculado = %s,
                 matricula = %s,
                 contraseña = %s,
