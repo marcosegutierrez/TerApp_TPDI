@@ -20,7 +20,7 @@
                 <label for="email">E-mail:</label>
                 <input type="text" name="email" class="form-control" required/>
                 <label for="titulo">Título:</label>
-                <input type="text" name="titulo" class="form-control" required/>
+                <input type="text" name="titulo" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
                 <label for="institucion_educativa">Institución educativa que emite el título:</label>
                 <input type="text" name="institucion_educativa" class="form-control" required/>
 
@@ -47,7 +47,7 @@
                 <input type="text" name="obra_social" class="form-control ">-->
                 
                 <label for="esta_matriculado">Posee matrícula:</label>
-                <input type="text" name="esta_matriculado" class="form-control" required/>
+                <input type="text" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" name="esta_matriculado" class="form-control" required/>
 
                 <!---->
 
