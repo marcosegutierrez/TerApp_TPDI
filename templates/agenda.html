@@ -21,7 +21,7 @@
                     <h2 class="text-center">Agenda de Turnos</h2>
                     <br>
                     <label for="nombre_apellido">Nombre y Apellido</label>
-                    <input type="text" name="nombre_apellido" class="form-control" required/>
+                    <input type="text" name="nombre_apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32))" class="form-control" required/>
                     
                     <label for="fecha">Fecha del turno:</label>
                     <input type="date" name="fecha" class="form-control" required/>

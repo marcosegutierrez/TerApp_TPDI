@@ -9,7 +9,7 @@
             <h2 class="text-center">Turno Registrado</h2>
             <br>
             <label for="nombre_apellido">Nombre y Apellido</label>
-            <input type="text" name="nombre_apellido" placeholder="Nombre y Apellido" value="{{agenda.1}}" class="form-control" required/>
+            <input type="text" name="nombre_apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32))" placeholder="Nombre y Apellido" value="{{agenda.1}}" class="form-control" required/>
             
             <label for="fecha">Fecha del turno:</label>
             <input type="date" name="fecha" value="{{agenda.2}}"class="form-control" required/>

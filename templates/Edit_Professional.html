@@ -7,10 +7,10 @@
             <form action="/update_professional/{{professional.0}}" method="POST">
                 
                 <h2 class="text-center">MI PERFIL PROFESIONAL</h2>
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" value="{{ professional.1}}" class="form-control" required/>
+                <label for="nombre">Nombre:</label>  
+                <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32))" value="{{ professional.1}}" class="form-control" required/>
                 <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" value="{{ professional.2}}" class="form-control" required/>
+                <input type="text" name="apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32))" value="{{ professional.2}}" class="form-control" required/>
                 <label for="dni">DNI:</label>
                 <input type="number" pattern="/^-?\d+\.?\d*$/" name="dni" value="{{ professional.3}}" placeholder="Sin puntos ni comas" class="form-control " onKeyPress="if(this.value.length==8) return false;" required/>
                 <label for="telefono">Teléfono:</label>
@@ -20,7 +20,7 @@
                 <label for="email">E-mail:</label>
                 <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" value="{{ professional.6}}" class="form-control" required/>
                 <label for="titulo">Título:</label>
-                <input type="text" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" name="titulo" value="{{ professional.7}}" class="form-control"required/>
+                <input type="text" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32))" name="titulo" value="{{ professional.7}}" class="form-control"required/>
                 <label for="institucion_educativa">Institución educativa que emite el título:</label>
                 <input type="text" name="institucion_educativa" value="{{ professional.8}}" class="form-control" required/>
 
