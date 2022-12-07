@@ -2,14 +2,14 @@
 {% block body %}
 
 <div class="col-md-5 pt-4 offset-md-4 ">
-  <div id="tarjeta_contacto" class="card card-body ">
+  <div id="tarjeta_contacto" class="card card-body">
     
     <form action="/contact/add_message" method="POST">
       <h2 class="text-center">Formulario de contacto</h2>
       <h5 class="text-sm-center">Escríbanos y en breve nos pondremos en contacto</h5>
 
       <label for="nombre">Nombre:</label>
-      <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" class="form-control" required/>
+      <input type="text" name="nombre" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32))" class="form-control" required/>
       
       <label for="email">E-mail:</label>
       <input type="email" name="email" class="form-control" required/>
