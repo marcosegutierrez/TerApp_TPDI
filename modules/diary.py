@@ -52,3 +52,20 @@ def delete_turno(mysql, id):
 
 # ------------------------BUSCADOR de Agenda------------------------------
 
+def agenda_Filtered(mysql, request):
+    busqueda = request.form['input-search']
+    if busqueda == "":
+        return agenda()
+    
+    currentvalue = busqueda
+    query = "SELECT * FROM agenda WHERE "
+    query += "nombre_apellido LIKE '%" + busqueda + "%' OR "
+    query += "fecha LIKE '%" + busqueda + "%' OR "
+    query += "hora LIKE '%" + busqueda + "%' OR "
+    query += "observaciones LIKE '%" + busqueda + "%'"
+
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    data = cur.fetchall()
+    
+    return [data, currentvalue]

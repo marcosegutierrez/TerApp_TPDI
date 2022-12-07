@@ -170,29 +170,15 @@ def delete_turno(id):
 
     # ------------------------BUSCADOR de Agenda------------------------------
 
-
 @app.route('/agenda', methods=['POST'])
 def agenda_Filtered():
-    busqueda = request.form['input-search']
-
-    if busqueda == "":
+    if request.form['input-search'] == "" :
         return agenda()
-
-    currentvalue = busqueda
-
-    query = "SELECT * FROM agenda WHERE "
-    query += "nombre_apellido LIKE '%" + busqueda + "%' OR "
-    query += "fecha LIKE '%" + busqueda + "%' OR "
-    query += "hora LIKE '%" + busqueda + "%' OR "
-    query += "observaciones LIKE '%" + busqueda + "%'"
-
-    cur = mysql.connection.cursor()
-    cur.execute(query)
-    data = cur.fetchall()
-
+    [data, currentvalue] = diary.agenda_Filtered(mysql, request)
     return render_template('agenda.html', agenda=data, currentvalue=currentvalue)
 
-    # --- Ruta que da funcionalidad al botón Volver en cada vista ---
+
+# ----------- Ruta que da funcionalidad al botón Volver en cada vista --------------
 
 
 @app.route('/personalized_welcome')
