@@ -3,7 +3,7 @@ from flask.globals import request
 from flask_mysqldb import MySQL
 import modules.beginning as beginning, modules.login as login
 import modules.wait as wait, modules.patient as patient, modules.professional as professional, modules.professional1 as professional1
-import modules.contact as contact
+import modules.contact as contact, modules.diary as diary
 
 app = Flask(__name__)
 
@@ -138,69 +138,34 @@ def Patient_List_Filtered():
     [data, currentvalue] = patient.Patient_List_Filtered(mysql, request)
     return render_template('Patient_List.html', paciente=data, currentvalue=currentvalue)
 
-
 # ----------------------Agenda--------------
 
 @app.route('/agenda')
 def agenda():
+    data = diary.agenda(mysql)
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM agenda')
     data = cur.fetchall()
     return render_template('agenda.html', agenda=data)
 
-
-@app.route('/agenda/add_turno', methods=['POST'])  # el botón guardar
+@app.route('/agenda/add_turno', methods=['POST'])
 def add_turno():
-    if request.method == 'POST':
-        nombre_apellido = request.form['nombre_apellido']
-        fecha = request.form['fecha']
-        hora = request.form['hora']
-        observaciones = request.form['observaciones']
-
-        cur = mysql.connection.cursor()
-        cur.execute('INSERT INTO agenda (nombre_apellido, fecha, hora, observaciones) VALUES (%s, %s,%s, %s)',
-                    (nombre_apellido, fecha, hora, observaciones))
-        mysql.connection.commit()
-        flash('Turno agregado con éxito')
-        return redirect(url_for('agenda'))
-
+    diary.add_turno(mysql, request)
+    return redirect(url_for('agenda'))
 
 @app.route('/agenda/edit_turno/<id>')
 def get_turno(id):
-    cur = mysql.connection.cursor()
-    # cambie (id) por [id] (agarra lista executable)
-    cur.execute('SELECT * FROM agenda WHERE id = %s', [id])
-    data = cur.fetchall()
-    return render_template('agenda.html', agenda=data[0])
-
+    data = diary.get_turno(mysql, id)
+    return render_template('Edit_Turno.html', agenda=data[0])
 
 @app.route('/update_turno/<id>', methods=['POST'])
 def update_turno(id):
-    if request.method == 'POST':
-        nombre_apellido = request.form['nombre_apellido']
-        fecha = request.form['fecha']
-        hora = request.form['hora']
-        observaciones = request.form['observaciones']
-        cur = mysql.connection.cursor()
-        cur.execute("""
-            UPDATE agenda
-            SET nombre_apellido = %s,
-                fecha = %s,
-                hora = %s,
-                observaciones = %s
-            WHERE id = %s  
-            """, (nombre_apellido, fecha, hora, observaciones, id))
-        mysql.connection.commit()
-        flash('Turno editado con éxito')
-        return redirect(url_for('agenda'))
-
+    diary.update_turno(mysql, id, request)
+    return redirect(url_for('agenda'))
 
 @app.route('/agenda/delete_turno/<string:id>')
 def delete_turno(id):
-    cur = mysql.connection.cursor()
-    cur.execute('DELETE FROM agenda WHERE id = {0}'.format(id))
-    mysql.connection.commit()
-    flash('Turno removido con éxito')
+    diary.delete_turno(mysql, id)
     return redirect(url_for('agenda'))
 
     # ------------------------BUSCADOR de Agenda------------------------------

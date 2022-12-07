@@ -12,7 +12,7 @@ def add_message(mysql, request):
         cur.execute('INSERT INTO contactenos (nombre, email, telefono, asunto, mensaje) VALUES (%s, %s, %s, %s, %s)',
                     (nombre, email, telefono, asunto, mensaje))
         mysql.connection.commit()
-        #flash('Mensaje enviado!')
+        flash('Mensaje enviado!')
 
 #def message_List(mysql):
 #    cur = mysql.connection.cursor()
