@@ -73,7 +73,10 @@
                 <div class="col-md-10">
                     <form action="/patient" method="POST">
                         <input type="search" id="input-search" name="input-search" placeholder="Buscar aqui" class="form-group" />
-                        <button type="submit" class="btn btn-primary btn-sm mx-2 my-4">Buscar</button>
+                        <button type="submit" class="btn btn-primary btn-bg mx-4 my-4">Buscar</button>
+                        <a href="/agenda">
+                            <input type="button" class="btn btn-primary btn-bg mx-4 my-4" value="Agendar Turno">
+                        </a>
                         <br>
                         <label class="form-group" id="search-label">Filtro actual: {{ currentvalue }}</label>
                     </form>
