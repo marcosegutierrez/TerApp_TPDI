@@ -2,7 +2,9 @@ from flask import flash, render_template
 
 def Patient_List(mysql):
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM paciente')
+    query = 'SELECT p.*, os.nombre FROM paciente p join obra_social os '
+    query += 'on os.id_obra_social = p.id_obra_social;' 
+    cur.execute(query)
     data = cur.fetchall()
     return data
 
@@ -91,19 +93,20 @@ def Patient_List_Filtered(mysql, request):
 
     currentvalue = busqueda
 
-    query = "SELECT * FROM paciente WHERE "
-    query += "nombre LIKE '%" + busqueda + "%' OR "
-    query += "apellido LIKE '%" + busqueda + "%' OR "
-    query += "edad LIKE '%" + busqueda + "%' OR "
-    query += "tutor LIKE '%" + busqueda + "%' OR "
-    query += "id_obra_social LIKE '%" + busqueda + "%' OR "
-    query += "n_afiliado LIKE '%" + busqueda + "%' OR "
-    query += "dni LIKE '%" + busqueda + "%' OR "
-    query += "email LIKE '%" + busqueda + "%' OR "
-    query += "telefono LIKE '%" + busqueda + "%' OR "
-    query += "domicilio LIKE '%" + busqueda + "%' OR "
-    query += "diagnostico LIKE '%" + busqueda + "%' OR "
-    query += "observaciones LIKE '%" + busqueda + "%'"
+    query = "SELECT p.*, os.nombre FROM paciente as p join obra_social as os"
+    query += " on os.id_obra_social = p.id_obra_social WHERE "
+    query += "p.nombre LIKE '%" + busqueda + "%' OR "
+    query += "p.apellido LIKE '%" + busqueda + "%' OR "
+    query += "p.edad LIKE '%" + busqueda + "%' OR "
+    query += "p.tutor LIKE '%" + busqueda + "%' OR "
+    query += "p.id_obra_social LIKE '%" + busqueda + "%' OR "
+    query += "p.n_afiliado LIKE '%" + busqueda + "%' OR "
+    query += "p.dni LIKE '%" + busqueda + "%' OR "
+    query += "p.email LIKE '%" + busqueda + "%' OR "
+    query += "p.telefono LIKE '%" + busqueda + "%' OR "
+    query += "p.domicilio LIKE '%" + busqueda + "%' OR "
+    query += "p.diagnostico LIKE '%" + busqueda + "%' OR "
+    query += "p.observaciones LIKE '%" + busqueda + "%'"
 
     cur = mysql.connection.cursor()
     cur.execute(query)

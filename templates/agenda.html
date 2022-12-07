@@ -65,10 +65,15 @@
                     <form action="/agenda" method="POST">
                         <input type="search" id="input-search" name="input-search" placeholder="Buscar aqui" class="form-group" />
                         <button type="submit" class="btn btn-info btn-sm mx-2 my-4">Buscar</button>
+                        
+                        <input type="button" class="btn btn-info btn-sm mx-2 my-4" id="hoy-checkbox" onClick="setHoy(this)" value="Hoy" />
                         <br>
                         <label class="form-group text-dark" id="search-label">Filtro actual: {{ currentvalue }}</label>
                     </form>
                     <br>
+                </div>
+                <div class="col-md-2 ">
+                    
                 </div>
             
                 
@@ -116,6 +121,15 @@
 </div>
 <br>
 
-
+<script>
+    function setHoy(event) {
+        var today = new Date();
+        var todayQuery = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate();
+        
+        document.querySelector('#input-search').value = todayQuery;
+        event.form.submit();
+        document.getElementById("hoy-checkbox").checked = true;    
+    }
+</script>
 
 {% endblock %}
