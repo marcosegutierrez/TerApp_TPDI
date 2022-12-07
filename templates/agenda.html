@@ -124,7 +124,7 @@
 <script>
     function setHoy(event) {
         var today = new Date();
-        var todayQuery = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate();
+        var todayQuery = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
         
         document.querySelector('#input-search').value = todayQuery;
         event.form.submit();
